@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Backgrounds */
+  --color-void: #060607;
+  --color-surface: #0D0D0F;
+  --color-surface-2: #141416;
+
+  /* Borders */
+  --color-hairline: #232326;
+  --color-hairline-strong: #2E2E32;
+
+  /* Text */
+  --color-ink: #FAFAFA;
+  --color-mist: #9A9A9E;
+  --color-faint: #5C5C60;
+
+  /* Brand */
+  --color-brand: #FF5100;
+  --color-brand-bright: #FF7A3D;
+  --color-brand-dim: #B23900;
+  --color-brand-wash: rgb(255 81 0 / 0.1);
+
+  /* Font */
+  --font-sans: var(--font-mona-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Fluid spacing scale */
+  --spacing-section-y: clamp(4rem, 8vw, 8rem);
+  --spacing-section-x: clamp(1.25rem, 4vw, 3.5rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-void text-ink font-sans antialiased min-h-screen flex flex-col overflow-x-hidden selection:bg-brand selection:text-ink;
+  }
+  
+  /* Custom Dark Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #060607;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #232326;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2E2E32;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-label {
+    @apply inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-brand;
+  }
+  .section-label::before {
+    content: '';
+    @apply w-1.5 h-1.5 rounded-full bg-brand inline-block;
+  }
+
+  .glow-card {
+    @apply bg-surface border border-hairline transition-all duration-300 hover:border-brand/40 hover:shadow-[0_0_30px_rgba(255,81,0,0.12)];
+  }
+
+  .glass-panel {
+    @apply bg-surface/80 backdrop-blur-md border border-hairline;
+  }
 }
