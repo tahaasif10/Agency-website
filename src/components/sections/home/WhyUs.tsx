@@ -1,41 +1,5 @@
 import React, { JSX } from "react";
 
-/* Add these once in your index.html <head>, or import in your global CSS:
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600&display=swap" rel="stylesheet">
-
-Then in tailwind.config.js:
-theme: {
-  extend: {
-    fontFamily: {
-      heading: ['"Archivo Black"', 'sans-serif'],
-      script: ['"Caveat"', 'cursive'],
-    }
-  }
-}
-*/
-
-// Color tokens
-interface ColorTokens {
-  void: string;
-  surface: string;
-  hairline: string;
-  ink: string;
-  mist: string;
-  signal: string;
-}
-
-const COLORS: ColorTokens = {
-  void: "#060607",     // page background
-  surface: "#0F1011",  // icon container background
-  hairline: "#242526", // borders, dividers
-  ink: "#FAFAFA",       // primary text
-  mist: "#9A9A9C",      // secondary text, icon glyphs
-  signal: "#FF5100",    // signature accent — "advantage" script + hover states only
-};
-
 type IconKey = "sparkle" | "chevrons" | "arch" | "dots";
 
 const icons: Record<IconKey, JSX.Element> = {
@@ -107,27 +71,18 @@ const advantages: Advantage[] = [
 
 export default function AdvantageSection(): JSX.Element {
   return (
-    <section
-      className="w-full px-6 md:px-16 py-20"
-      style={{ background: COLORS.void, color: COLORS.ink }}
-    >
+    <section className="w-full px-6 md:px-16 py-20 bg-void text-ink border-t border-hairline">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
         {/* Left: Title block */}
         <div className="flex flex-col gap-6">
           <div>
-            <h2
-              className="uppercase leading-[0.95] text-5xl md:text-6xl tracking-tight"
-              style={{ fontFamily: "'Archivo Black', sans-serif", color: COLORS.ink }}
-            >
+            <h2 className="uppercase leading-[0.95] text-5xl md:text-6xl tracking-tight text-ink font-bold">
               What makes
               <br />
               us unique
             </h2>
           </div>
-          <p
-            className="text-sm md:text-base max-w-sm font-medium"
-            style={{ color: COLORS.mist }}
-          >
+          <p className="text-sm md:text-base max-w-sm font-medium text-mist">
             Futuristic AR interface with intuitive design and smooth,
             responsive user experience.
           </p>
@@ -135,45 +90,25 @@ export default function AdvantageSection(): JSX.Element {
 
         {/* Right: Service list */}
         <div className="flex flex-col">
-          <div className="w-full border-t" style={{ borderColor: COLORS.hairline }} />
+          <div className="w-full border-t border-hairline" />
           {advantages.map((item, index) => (
             <div key={index} className="w-full advantage-row group">
               <div className="flex items-center gap-5 py-7">
-                <div
-                  className="advantage-icon w-14 h-14 flex-shrink-0 rounded-xl flex items-center justify-center transition-all duration-300"
-                  style={{
-                    background: COLORS.surface,
-                    border: `1px solid ${COLORS.hairline}`,
-                    color: COLORS.mist,
-                  }}
-                >
+                <div className="advantage-icon w-14 h-14 flex-shrink-0 rounded-xl flex items-center justify-center transition-all duration-300 bg-surface border border-hairline text-mist group-hover:border-brand group-hover:text-brand">
                   {item.icon}
                 </div>
-                <h6
-                  className="uppercase leading-tight text-xl md:text-2xl tracking-tight flex-shrink-0 basis-1/2"
-                  style={{ fontFamily: "'Archivo Black', sans-serif", color: COLORS.ink }}
-                >
+                <h6 className="uppercase leading-tight text-xl md:text-2xl tracking-tight flex-shrink-0 basis-1/2 text-ink font-bold">
                   {item.title}
                 </h6>
-                <p
-                  className="text-xs md:text-sm font-medium leading-snug"
-                  style={{ color: COLORS.mist }}
-                >
+                <p className="text-xs md:text-sm font-medium leading-snug text-mist">
                   {item.description}
                 </p>
               </div>
-              <div className="w-full border-t" style={{ borderColor: COLORS.hairline }} />
+              <div className="w-full border-t border-hairline" />
             </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        .advantage-row:hover .advantage-icon {
-          border-color: ${COLORS.signal} !important;
-          color: ${COLORS.signal} !important;
-        }
-      `}</style>
     </section>
   );
 }

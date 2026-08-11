@@ -1,5 +1,6 @@
 import ContactHero from "@/components/sections/contact/ContactHero";
 import ContactForm from "@/components/sections/contact/ContactForm";
+import ContactFinalCTA from "@/components/ui/FinalCTAs/ContactFinalCTA";
 
 export const metadata = {
   title: "Contact Us — Apex AI Studio",
@@ -11,6 +12,7 @@ export default function ContactPage(): JSX.Element {
     <main className="bg-void text-ink min-h-screen">
       <ContactHero />
       <ContactForm />
+      <ContactFinalCTA />
     </main>
   );
 }

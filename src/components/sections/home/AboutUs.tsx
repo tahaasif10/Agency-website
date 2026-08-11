@@ -1,8 +1,6 @@
 export default function AboutUs() {
   return (
-    <section className="relative bg-void py-16 md:py-24 overflow-hidden">
-      <div className="pointer-events-none absolute -top-28 right-1/4 w-[420px] h-[420px] rounded-full bg-brand/10 blur-[120px]" />
-
+    <section className="relative bg-paper py-16 md:py-24 overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 md:gap-10">
           <div className="order-2 md:order-1">

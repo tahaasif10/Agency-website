@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import localFont from "next/font/local";
 import Nav from "@/components/layouts/Nav";
 import Footer from "@/components/layouts/Footer";
 import { agencyData } from "@/lib/data/agency";
+
+const monaSans = localFont({
+  src: "../../public/fonts/MonaSansVF.ttf", // path relative to this file
+  variable: "--font-mona-sans",
+  display: "swap",
+  weight: "100 900",   // variable weight range
+  style: "normal",
+});
 
 export const metadata: Metadata = {
   title: `${agencyData.name} — AI Systems & Enterprise Software Studio`,
@@ -18,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className={`dark scroll-smooth ${monaSans.variable}`}>
       <body className="bg-void text-ink font-sans antialiased min-h-screen flex flex-col">
         <Nav />
         {/* Main curtain container lifting over the sticky footer */}

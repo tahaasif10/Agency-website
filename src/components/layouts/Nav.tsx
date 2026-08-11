@@ -58,8 +58,8 @@ export default function Nav() {
         initial={{ y: 0 }}
         animate={{
           y: isHidden ? "-100%" : 0,
-          backgroundColor: isScrolled ? "rgba(6, 6, 7, 0.85)" : "rgba(6, 6, 7, 0)",
-          borderBottomColor: isScrolled ? "#232326" : "transparent",
+          backgroundColor: isScrolled ? "rgba(250, 250, 250, 0.85)" : "rgba(250, 250, 250, 0)",
+          borderBottomColor: isScrolled ? "#E5E5E5" : "transparent",
           paddingTop: isScrolled ? "0.75rem" : "1.25rem",
           paddingBottom: isScrolled ? "0.75rem" : "1.25rem",
         }}

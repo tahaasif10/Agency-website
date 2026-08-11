@@ -66,20 +66,20 @@ const STEPS: Step[] = [
 ];
 
 // Signature accent — use sparingly (labels, icon hover, connecting line)
-const ACCENT = '#FF5100';
+const ACCENT = 'var(--color-brand)';
 // Brighter variant reserved for glow/motion moments (hover shadow below)
-const GLOW = '#FF7A3D';
+const GLOW = 'var(--color-brand-bright)';
 
 const COLORS = {
-  bg: '#060607',        // Void
-  surface: '#0F1011',   // Surface
-  border: '#242526',    // Hairline
-  textPrimary: '#FAFAFA', // Ink
-  textMuted: '#9A9A9C',   // Mist
-  textSecondary: '#9A9A9C', // Mist
-  eyebrow: '#9A9A9C',     // Mist
-  ghost: '#242526',       // Hairline (unused currently, kept for parity)
-  lineBase: '#242526',    // Hairline
+  bg: 'var(--color-void)',        // Void
+  surface: 'var(--color-surface)',   // Surface
+  border: 'var(--color-hairline)',    // Hairline
+  textPrimary: 'var(--color-ink)', // Ink
+  textMuted: 'var(--color-mist)',   // Mist
+  textSecondary: 'var(--color-mist)', // Mist
+  eyebrow: 'var(--color-mist)',     // Mist
+  ghost: 'var(--color-hairline)',       // Hairline (unused currently, kept for parity)
+  lineBase: 'var(--color-hairline)',    // Hairline
 } as const;
 
 export default function HowWeWorkRow() {
@@ -168,29 +168,39 @@ export default function HowWeWorkRow() {
         <div
           ref={lineRef}
           aria-hidden="true"
-          className="hidden lg:block absolute top-[27px] h-px origin-left"
+          className="hidden lg:block absolute top-[27px] h-px origin-left overflow-hidden"
           style={{
             background: ACCENT,
             transform: 'scaleX(0)',
             left: '10%',
             right: '10%',
           }}
-        />
+        >
+  <div className="process-line-pulse absolute top-0 h-full w-24" />
+</div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             return (
               <div key={step.phase} className="process-step group relative flex flex-col">
-                <div
-                  ref={(el) => { nodeRefs.current[i] = el; }}
-                  className="process-step-icon relative z-10 flex items-center justify-center w-[54px] h-[54px] rounded-full mb-5 mx-auto"
-                  style={{
-                    background: COLORS.surface,
-                    border: `1px solid ${COLORS.border}`,
-                    color: COLORS.textPrimary,
-                  }}
-                >
+                <div className="relative w-[64px] h-[64px] mb-5 mx-auto">
+                  {/* outer faint ring — always-on ambient presence */}
+                  <div
+                    className="process-step-ring absolute inset-0 rounded-full"
+                    style={{ border: `1px solid ${ACCENT}`, opacity: 0.15 }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    ref={(el) => { nodeRefs.current[i] = el; }}
+                    className="process-step-icon relative z-10 flex items-center justify-center w-[64px] h-[64px] rounded-full"
+                    style={{
+                      background: COLORS.surface,
+                      border: `1px solid ${COLORS.border}`,
+                      color: COLORS.textPrimary,
+                      boxShadow: `0 0 0px transparent`,
+                    }}
+                  >
                   <Icon
                     size={24}
                     className="process-step-icon-svg"
@@ -198,12 +208,13 @@ export default function HowWeWorkRow() {
                     aria-hidden="true"
                   />
                 </div>
+              </div>
 
                 <div
                   ref={(el) => { cardRefs.current[i] = el; }}
-                  className="relative flex-1 rounded-xl p-5 overflow-hidden"
+                  className="process-card relative flex-1 rounded-xl p-5 overflow-hidden"
                   style={{
-                    background: COLORS.surface,
+                    background: `radial-gradient(ellipse 120% 80% at 20% 0%, var(--color-brand-wash) 0%, transparent 60%), ${COLORS.surface}`,
                     border: `0.5px solid ${COLORS.border}`,
                   }}
                 >
@@ -288,13 +299,25 @@ export default function HowWeWorkRow() {
         .process-phase-label {
           position: relative;
           z-index: 10;
-          display: block;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
           font-family: ui-monospace, "SF Mono", Menlo, monospace;
           font-size: 11px;
-          letter-spacing: 0.2em;
+          font-weight: 600;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: ${ACCENT};
-          margin-bottom: 8px;
+          margin-bottom: 10px;
+        }
+        .process-phase-label::before {
+          content: '';
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: ${ACCENT};
+          box-shadow: 0 0 6px ${ACCENT};
+          flex-shrink: 0;
         }
         .process-card-title {
           position: relative;
@@ -322,10 +345,55 @@ export default function HowWeWorkRow() {
         .process-step-icon-svg {
           transition: transform 0.3s ease !important;
         }
+        /* Always-on ambient ring pulse behind each node */
+        .process-step-ring {
+          animation: ring-pulse 3.5s ease-in-out infinite;
+        }
+        @keyframes ring-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.12; }
+          50% { transform: scale(1.15); opacity: 0.28; }
+        }
+
+        /* Moving pulse traveling along the connector line */
+        .process-line-pulse {
+          background: linear-gradient(90deg, transparent, ${GLOW}, transparent);
+          animation: line-travel 2.8s linear infinite;
+          animation-delay: 1.2s; /* starts after the line draw-in finishes */
+        }
+        @keyframes line-travel {
+          0% { left: -10%; }
+          100% { left: 110%; }
+        }
+
+        /* Card hover: border glow + lift */
+        .process-card {
+          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .process-step:hover .process-card {
+          border-color: color-mix(in srgb, var(--color-brand) 35%, transparent) !important;
+          box-shadow: 0 8px 30px var(--color-brand-wash), 0 0 0 1px color-mix(in srgb, var(--color-brand) 6%, transparent) inset;
+          transform: translateY(-2px);
+        }
+
+        /* Icon node glow on hover, layered on top of existing hover rule */
+        .process-step:hover .process-step-icon {
+          box-shadow: 0 0 28px color-mix(in srgb, var(--color-brand-bright) 50%, transparent) !important;
+        }
+        .process-step:hover .process-step-ring {
+          opacity: 0.4 !important;
+          animation-play-state: paused;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .process-step-ring,
+          .process-line-pulse {
+            animation: none !important;
+          }
+        }
         .process-step:hover .process-step-icon {
           border-color: ${ACCENT} !important;
           color: ${ACCENT} !important;
-          box-shadow: 0 0 24px rgba(255, 122, 61, 0.45) !important;
+          box-shadow: 0 0 24px color-mix(in srgb, var(--color-brand-bright) 45%, transparent) !important;
           transform: scale(1.08) !important;
         }
         .process-step:hover .process-step-icon-svg {
