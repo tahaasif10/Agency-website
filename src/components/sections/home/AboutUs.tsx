@@ -11,12 +11,12 @@ export default function AboutUs() {
       </h2>
 
       <div className="flex items-center gap-3 mt-10 md:mt-12">
-        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-brand-wash text-gradient-brand text-xs font-semibold shrink-0">
+        {/* <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-brand-wash text-gradient-brand text-xs font-semibold shrink-0">
           <span aria-hidden="true">★</span>
           4.9
-        </span>
+        </span> */}
         <span className="text-sm text-mist whitespace-nowrap shrink-0">
-          Chosen by 60+ companies worldwide
+          One team. Zero handoffs. Real production systems.
         </span>
         <div className="h-px w-full bg-hairline" />
       </div>

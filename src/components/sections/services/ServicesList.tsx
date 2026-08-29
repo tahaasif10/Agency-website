@@ -310,7 +310,7 @@ const ServicesGrid: FC = () => {
         <FeatureCardLink
           href="/services/generative-ai-development-services"
           badgeIcon={icons.genAi}
-          badgeLabel="Generative AI"
+          badgeLabel=""
           title="AI Agent Development"
           description="Autonomous agents that plan, act, and complete real multi-step work — not scripted chat flows. We build the reasoning, tool access, and guardrails an agent needs to operate reliably inside your systems, with a clear handoff back to a human when it matters."
         />

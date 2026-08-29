@@ -7,7 +7,7 @@ import AboutProof from "@/components/sections/about/AboutProof";
 import AboutCTA from "@/components/sections/about/AboutCTA";
 
 export const metadata = {
-  title: "About Us — Fostyn AI Studio",
+  title: "About Us — Fostyn ",
   description: "Senior AI engineers, full-stack architects, and MLOps specialists building production AI systems.",
 };
 

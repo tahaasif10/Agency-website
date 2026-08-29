@@ -71,16 +71,8 @@ export default function Faq() {
             </h2>
 
             <p className="font-mona-sans mt-6 text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              potenti nullam ac tortor vitae purus faucibus ornare suspendisse.
+              Straight answers to what clients actually ask before signing on — no sales language, no fine print surprises.
             </p>
-
-            <p className="font-mona-sans mt-4 text-sm md:text-base leading-[1.65] max-w-[32ch] text-mist">
-              Have a different question or a custom requirement? Feel free to
-              contact our team.
-            </p>
-
-            
 
             {/* Still have questions box — pushed to the bottom to align with the last FAQ item */}
             <div className="mt-auto pt-10 rounded-2xl border border-hairline bg-ink/[0.03] px-8 py-10 flex flex-col items-start text-left gap-4 w-full">
@@ -88,8 +80,7 @@ export default function Faq() {
                 Still have questions?
               </h3>
               <p className="font-mona-sans text-sm leading-relaxed text-mist">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                If it's not answered here, you're not stuck reading a help doc — talk to an engineer directly and get a straight answer.
               </p>
               <Button href="/contact" variant="primary" size="md">
                 Get in touch

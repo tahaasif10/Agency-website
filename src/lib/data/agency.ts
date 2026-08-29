@@ -3,7 +3,7 @@ import { AgencyInfo } from "@/types";
 
 export const agencyData: AgencyInfo = {
   name: "Fostyn",
-  legalName: "Fostyn Ltd.",
+  legalName: "Fostyn",
   tagline: "Code with AI that thinks, edits, and runs natively in production.",
   description:
     "We build custom AI infrastructure, enterprise LLM workflows, autonomous agents, and RAG architectures that run directly within your operations with zero handoffs and maximum data control.",
