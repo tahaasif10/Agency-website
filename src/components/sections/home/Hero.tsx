@@ -24,13 +24,6 @@ export default function Hero() {
           backgroundSize: "26px 26px",
         }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 30% 40%, #060607 20%, rgba(6,6,7,0) 70%)",
-        }}
-      />
 
       <Section bg="none" className="w-full !py-0 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center py-20">
@@ -42,7 +35,7 @@ export default function Hero() {
               }`}
             >
               <span className="inline-block w-2 h-2 rounded-full bg-brand animate-pulse motion-reduce:animate-none" />
-              <span className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-brand">
+              <span className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gradient-brand">
                 Running locally
               </span>
             </div>

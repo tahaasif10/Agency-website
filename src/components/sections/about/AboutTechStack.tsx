@@ -57,7 +57,7 @@ interface LogoChipProps {
   name: string;
 }
 
-function LogoChip({ name }: LogoChipProps): JSX.Element {
+function LogoChip({ name }: LogoChipProps) {
   return (
     <div className="flex items-center gap-2.5 px-6 whitespace-nowrap flex-shrink-0 group">
       <span className="w-1.5 h-1.5 rounded-full bg-[#ccc] group-hover:bg-[#FF4400] transition-colors duration-300 flex-shrink-0" />
@@ -78,7 +78,7 @@ function MarqueeRow({
   items,
   direction = "left",
   speed = 40,
-}: MarqueeRowProps): JSX.Element {
+}: MarqueeRowProps) {
   const doubled = [...items, ...items];
   return (
     <div className="relative flex overflow-hidden">
@@ -96,7 +96,7 @@ function MarqueeRow({
   );
 }
 
-export default function AboutTechStack(): JSX.Element {
+export default function AboutTechStack() {
   const [labelRef, labelInView] = useInView();
   const [headingRef, headingInView] = useInView();
 
@@ -135,7 +135,7 @@ export default function AboutTechStack(): JSX.Element {
             }`}
           >
             Production-grade tools, not
-            <br className="hidden md:block" /> whatever's trending this week.
+            <br className="hidden md:block" /> whatever&apos;s trending this week.
           </h2>
         </div>
       </div>

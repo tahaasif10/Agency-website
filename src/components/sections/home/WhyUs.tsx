@@ -1,114 +1,133 @@
-import React, { JSX } from "react";
+// whyus.tsx
+"use client";
 
-type IconKey = "sparkle" | "chevrons" | "arch" | "dots";
-
-const icons: Record<IconKey, JSX.Element> = {
-  sparkle: (
-    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-      <path
-        d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"
-        fill="currentColor"
-      />
-    </svg>
-  ),
-  chevrons: (
-    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-      <path d="M2 4 L11 12 L2 20 Z" fill="currentColor" />
-      <path d="M13 4 L22 12 L13 20 Z" fill="currentColor" />
-    </svg>
-  ),
-  arch: (
-    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-      <path
-        d="M5 22 V11 C5 6 8.5 2 12 2 C15.5 2 19 6 19 11 V22 H14 V11 C14 9.5 13 8.5 12 8.5 C11 8.5 10 9.5 10 11 V22 Z"
-        fill="currentColor"
-      />
-    </svg>
-  ),
-  dots: (
-    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-      <circle cx="7" cy="7" r="4.5" fill="currentColor" />
-      <circle cx="17" cy="7" r="4.5" fill="currentColor" />
-      <circle cx="7" cy="17" r="4.5" fill="currentColor" />
-      <circle cx="17" cy="17" r="4.5" fill="currentColor" />
-    </svg>
-  ),
-};
+import { useInView } from "@/lib/hooks/useInView";
+import { Section } from "@/components/ui/Section";
 
 interface Advantage {
-  icon: JSX.Element;
+  code: string;
   title: string;
   description: string;
 }
 
-const advantages: Advantage[] = [
+const FEATURED: Advantage[] = [
   {
-    icon: icons.sparkle,
-    title: "Results that matter",
-    description: "Driving real impact through purposeful design.",
+    code: "ENG",
+    title: "Senior engineers only",
+    description: "No junior hand-offs — the people who scope it are the people who build it.",
   },
   {
-    icon: icons.chevrons,
-    title: "Cutting-edge design",
-    description: "Modern, bold visuals that capture attention.",
-  },
-  {
-    icon: icons.arch,
-    title: "Strategy-driven approach",
-    description: "Every move backed by insight and purpose.",
-  },
-  {
-    icon: icons.dots,
-    title: "Innovation at the core",
-    description: "Fresh ideas that challenge the ordinary.",
-  },
-  {
-    icon: icons.sparkle,
-    title: "Effortless teamwork",
-    description: "Work smoothly together with perfect sync and shared focus.",
+    code: "DIR",
+    title: "Direct access, no middlemen",
+    description: "You talk to the engineer working on your project, not an account manager.",
   },
 ];
 
-export default function AdvantageSection(): JSX.Element {
+const SUPPORTING: Advantage[] = [
+  {
+    code: "PRD",
+    title: "Production-grade from day one",
+    description: "Built to survive real users and real data, not just a polished demo.",
+  },
+  {
+    code: "ITR",
+    title: "Fast, transparent iteration",
+    description: "Working code shipped at every phase — no black-box months of silence.",
+  },
+  {
+    code: "SCP",
+    title: "Scoped, not stretched",
+    description: "Clear deliverables agreed upfront, so scope doesn't quietly creep.",
+  },
+];
+
+export default function AdvantageSection() {
+  const [headerRef, headerInView] = useInView<HTMLDivElement>(0.15);
+  const [gridRef, gridInView] = useInView<HTMLDivElement>(0.15);
+
   return (
-    <section className="w-full px-6 md:px-16 py-20 bg-void text-ink border-t border-hairline">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
-        {/* Left: Title block */}
-        <div className="flex flex-col gap-6">
-          <div>
-            <h2 className="uppercase leading-[0.95] text-5xl md:text-6xl tracking-tight text-ink font-bold">
-              What makes
-              <br />
-              us unique
-            </h2>
+    <Section bg="void" className="text-ink border-t border-hairline">
+      <div
+        ref={headerRef}
+        className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 transition-all duration-700 ease-out ${
+          headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
+        <div className="flex flex-col gap-6 max-w-sm">
+          <div className="flex items-center gap-2.5">
+            <span className="font-mono text-[11px] leading-none text-brand">[04]</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand font-mono">
+              Why us
+            </span>
           </div>
-          <p className="text-sm md:text-base max-w-sm font-medium text-mist">
-            Futuristic AR interface with intuitive design and smooth,
-            responsive user experience.
-          </p>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight leading-[1.12]">
+            What makes us different
+          </h2>
         </div>
 
-        {/* Right: Service list */}
-        <div className="flex flex-col">
-          <div className="w-full border-t border-hairline" />
-          {advantages.map((item, index) => (
-            <div key={index} className="w-full advantage-row group">
-              <div className="flex items-center gap-5 py-7">
-                <div className="advantage-icon w-14 h-14 flex-shrink-0 rounded-xl flex items-center justify-center transition-all duration-300 bg-surface border border-hairline text-mist group-hover:border-brand group-hover:text-brand">
-                  {item.icon}
-                </div>
-                <h6 className="uppercase leading-tight text-xl md:text-2xl tracking-tight flex-shrink-0 basis-1/2 text-ink font-bold">
+        <p className="text-base text-mist font-light leading-relaxed max-w-sm md:text-right">
+          Not a pitch about culture or values — five concrete things that
+          change how your project actually gets delivered.
+        </p>
+      </div>
+
+      <div
+        ref={gridRef}
+        className={`flex flex-col gap-5 transition-all duration-700 ease-out delay-100 ${
+          gridInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
+        {/* featured pair — largest claims, get the only accent wash on the page */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {FEATURED.map((item) => (
+            <div
+              key={item.title}
+              className="group flex flex-col justify-between gap-8 rounded-2xl border border-brand/20 bg-brand/[0.04] p-8 transition-colors duration-300 hover:border-brand/40"
+            >
+              <div className="w-14 h-14 rounded-full border border-brand/30 bg-void flex items-center justify-center transition-colors duration-300 group-hover:border-brand">
+                <span className="font-mono text-[10px] tracking-tight text-brand">
+                  {item.code}
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-ink">
                   {item.title}
-                </h6>
-                <p className="text-xs md:text-sm font-medium leading-snug text-mist">
+                </h3>
+                <p className="text-sm text-mist leading-relaxed font-normal max-w-xs">
                   {item.description}
                 </p>
               </div>
-              <div className="w-full border-t border-hairline" />
+            </div>
+          ))}
+        </div>
+
+        {/* supporting three — same badge language, quieter treatment */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {SUPPORTING.map((item) => (
+            <div
+              key={item.title}
+              className="group flex flex-col justify-between gap-6 rounded-2xl border border-hairline p-6 transition-colors duration-300 hover:border-mist/40"
+            >
+              <div className="w-11 h-11 rounded-full border border-mist/40 bg-void flex items-center justify-center transition-colors duration-300 group-hover:border-brand">
+                <span className="font-mono text-[9px] tracking-tight text-mist group-hover:text-brand transition-colors duration-300">
+                  {item.code}
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <h3 className="text-lg font-bold tracking-tight text-ink">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-mist leading-snug font-normal">
+                  {item.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

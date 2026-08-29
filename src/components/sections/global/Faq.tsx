@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 
 interface FaqItem {
   question: string;
@@ -14,35 +16,43 @@ export default function Faq() {
   const faqs: FaqItem[] = [
     {
       question: "What kind of AI solutions do you build?",
-      answer: "We build custom AI systems — from automation workflows and internal tools to full AI-powered products — tailored to your specific business problem, not off-the-shelf templates.",
+      answer:
+        "We build custom AI systems — from automation workflows and internal tools to full AI-powered products — tailored to your specific business problem, not off-the-shelf templates.",
     },
     {
       question: "How long does a typical project take?",
-      answer: "Most projects launch a working version in 2–4 weeks, depending on scope. We share progress in sprints so you're never left waiting for a big reveal.",
+      answer:
+        "Most projects launch a working version in 2–4 weeks, depending on scope. We share progress in sprints so you're never left waiting for a big reveal.",
     },
     {
       question: "Do I need technical knowledge to work with you?",
-      answer: "Not at all. We handle the technical side end-to-end and explain everything in plain business terms — you focus on your goals, we handle the execution.",
+      answer:
+        "Not at all. We handle the technical side end-to-end and explain everything in plain business terms — you focus on your goals, we handle the execution.",
     },
     {
       question: "What if I already have an existing system or team?",
-      answer: "We're built to integrate, not replace. We can work alongside your existing tools, team, or codebase, or build something new if that's a better fit.",
+      answer:
+        "We're built to integrate, not replace. We can work alongside your existing tools, team, or codebase, or build something new if that's a better fit.",
     },
     {
       question: "How much does a project cost?",
-      answer: "Every project is scoped individually based on complexity, but most engagements start at [$X]. We'll give you a clear quote after understanding your specific needs — no hidden fees.",
+      answer:
+        "Every project is scoped individually based on complexity, but most engagements start at [$X]. We'll give you a clear quote after understanding your specific needs — no hidden fees.",
     },
     {
       question: "What happens after the project launches?",
-      answer: "We don't disappear at launch. We offer ongoing support, monitoring, and optimization to make sure your system keeps performing as your business scales.",
+      answer:
+        "We don't disappear at launch. We offer ongoing support, monitoring, and optimization to make sure your system keeps performing as your business scales.",
     },
     {
       question: "Do you sign NDAs and handle data securely?",
-      answer: "Yes — we take data privacy seriously and are happy to sign NDAs before any discovery call. Your data and workflows stay confidential throughout.",
+      answer:
+        "Yes — we take data privacy seriously and are happy to sign NDAs before any discovery call. Your data and workflows stay confidential throughout.",
     },
     {
       question: "What if I'm not sure AI is right for my business yet?",
-      answer: "That's exactly what our discovery call is for. We'll assess your business honestly — if AI isn't the right fit, we'll tell you, no pushy sales pitch.",
+      answer:
+        "That's exactly what our discovery call is for. We'll assess your business honestly — if AI isn't the right fit, we'll tell you, no pushy sales pitch.",
     },
   ];
 
@@ -51,29 +61,39 @@ export default function Faq() {
   };
 
   return (
-    <section className="px-[clamp(1.5rem,5vw,4rem)] py-28 max-w-[1980px] mx-auto relative overflow-hidden bg-void text-ink border-t border-hairline">
+    <Section id="faq" bg="void" className="relative overflow-hidden border-t border-hairline">
       <div className="max-w-6xl mx-auto">
-        {/* Split grid layout: 1 col on mobile, 2 cols (35% / 65%) on md and up */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_2fr] gap-12 md:gap-16">
-
           {/* Left Column: Heading */}
-          <div className="flex flex-col items-start">
-            <h2 className="font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
+          <div className="flex flex-col items-start h-full">
+            <h2 className="font-mona-sans font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
               Frequently Asked Questions
             </h2>
 
-            <p className="mt-6 text-sm md:text-base leading-[1.65] max-w-[32ch] text-mist">
-              Have a different question or a custom requirement? Feel free to contact our team.
+            <p className="font-mona-sans mt-6 text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+              potenti nullam ac tortor vitae purus faucibus ornare suspendisse.
             </p>
 
-            <div className="mt-8">
-              <a
-                href="/contact"
-                className="group inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-ink hover:text-brand transition-colors duration-300"
-              >
+            <p className="font-mona-sans mt-4 text-sm md:text-base leading-[1.65] max-w-[32ch] text-mist">
+              Have a different question or a custom requirement? Feel free to
+              contact our team.
+            </p>
+
+            
+
+            {/* Still have questions box — pushed to the bottom to align with the last FAQ item */}
+            <div className="mt-auto pt-10 rounded-2xl border border-hairline bg-ink/[0.03] px-8 py-10 flex flex-col items-start text-left gap-4 w-full">
+              <h3 className="font-mona-sans font-bold text-xl md:text-2xl tracking-tight text-ink">
+                Still have questions?
+              </h3>
+              <p className="font-mona-sans text-sm leading-relaxed text-mist">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+              <Button href="/contact" variant="primary" size="md">
                 Get in touch
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </a>
+              </Button>
             </div>
           </div>
 
@@ -91,7 +111,7 @@ export default function Faq() {
                     className="w-full flex items-center justify-between text-left gap-6 group cursor-pointer focus:outline-none"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-sans font-bold text-lg md:text-xl leading-snug text-ink group-hover:text-brand transition-colors duration-300">
+                    <span className="font-mona-sans font-bold text-lg md:text-xl leading-snug text-ink group-hover:text-brand transition-colors duration-300">
                       {faq.question}
                     </span>
 
@@ -114,7 +134,7 @@ export default function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="font-sans text-sm md:text-base leading-[1.65] max-w-[55ch] text-mist">
+                      <p className="font-mona-sans text-sm md:text-base leading-[1.65] max-w-[55ch] text-mist">
                         {faq.answer}
                       </p>
                     </div>
@@ -123,9 +143,8 @@ export default function Faq() {
               );
             })}
           </div>
-
         </div>
       </div>
-    </section>
+    </Section>
   );
-}
+}

@@ -94,7 +94,7 @@ const socialIcons: Record<string, React.ComponentType<SocialIconProps>> = {
   instagram: InstagramIcon,
 };
 
-export default function ContactForm(): JSX.Element {
+export default function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -112,10 +112,7 @@ export default function ContactForm(): JSX.Element {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -129,64 +126,55 @@ export default function ContactForm(): JSX.Element {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to submit message.");
-      }
-
-      setStatus({
-        type: "success",
-        message: data.message || "Message sent successfully!",
-      });
-
-      // Reset form on success
-      setFormData({
-        name: "",
-        email: "",
-        organization: "",
-        service: "",
-        message: "",
-      });
+      if (!response.ok) throw new Error(data.error || "Failed to submit message.");
+      setStatus({ type: "success", message: data.message || "Message sent successfully!" });
+      setFormData({ name: "", email: "", organization: "", service: "", message: "" });
     } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Something went wrong. Please try again.";
       setStatus({
         type: "error",
-        message: errorMessage,
+        message: err instanceof Error ? err.message : "Something went wrong. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Fields feeding the live "filled" counter
+  const summaryRows: { label: string; value: string }[] = [
+    { label: "Name", value: formData.name },
+    { label: "Email", value: formData.email },
+    { label: "Organization", value: formData.organization ?? "" },
+    { label: "Service", value: formData.service },
+    { label: "Message", value: formData.message },
+  ];
+  const filledCount = summaryRows.filter((r) => r.value.trim().length > 0).length;
+
+  const inputClasses =
+    "bg-surface text-ink placeholder-faint placeholder:text-[15px] text-sm rounded-md px-4 py-3 border border-hairline outline-none transition-all focus:border-brand focus:ring-2 focus:ring-brand/15 focus:shadow-[0_0_0_3px_rgba(255,81,0,0.08)]";
+
   return (
-    <section className="py-20 px-6 md:px-12 bg-void text-ink border-t border-hairline">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-start">
+    <section className="px-[clamp(1.5rem,5vw,4rem)] max-w-[1980px] mx-auto bg-void text-ink border-t border-hairline py-[clamp(3.5rem,7vw,6rem)]">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-x-[clamp(2.5rem,6vw,6rem)] gap-y-12 items-start">
         {/* Left: direct contact info */}
-        <div className="flex flex-col gap-10 font-sans">
+        <div className="flex flex-col gap-10">
           <div>
-            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-brand block mb-2">
-              Direct Channels
-            </span>
-            <h2 className="text-[clamp(2.125rem,4vw,2.375rem)] font-extrabold leading-[1.1] text-[#060607] mb-6">
-              Let&apos;s build something{" "}
-              <span className="text-brand">exceptional.</span>
+            <h2 className="text-[clamp(2rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] text-ink mb-6 tracking-[-0.03em]">
+              Let&apos;s build something <span className="text-brand">exceptional.</span>
             </h2>
-            <p className="text-base font-normal leading-normal text-[#5a5a5a]">
+            <p className="text-base leading-relaxed text-mist max-w-[48ch]">
               Have a complex dataset, model fine-tuning requirement, or agentic workflow in mind? Reach out directly to our engineering team.
             </p>
           </div>
 
           <div className="flex flex-col gap-6 pt-6 border-t border-hairline">
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-[#999] mb-1">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-faint mb-1">
                 Direct Email
               </h3>
               <a
                 href={`mailto:${agencyData.email}`}
-                className="text-[17px] font-semibold text-[#060607] hover:text-brand transition-colors inline-flex items-center gap-1.5"
+                className="text-[17px] font-semibold text-ink hover:text-brand transition-colors inline-flex items-center gap-1.5"
               >
                 {agencyData.email}
                 <ArrowUpRight className="w-4 h-4 text-brand" />
@@ -194,26 +182,26 @@ export default function ContactForm(): JSX.Element {
             </div>
 
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-[#999] mb-1">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-faint mb-1">
                 Phone &amp; WhatsApp
               </h3>
               <a
                 href={`tel:${agencyData.phone}`}
-                className="text-[17px] font-semibold text-[#060607] hover:text-brand transition-colors"
+                className="text-[17px] font-semibold text-ink hover:text-brand transition-colors"
               >
                 {agencyData.phone}
               </a>
             </div>
 
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-[#999] mb-1">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-faint mb-1">
                 HQ Location
               </h3>
-              <p className="text-[17px] font-semibold text-[#060607]">{agencyData.address}</p>
+              <p className="text-[17px] font-semibold text-ink">{agencyData.address}</p>
             </div>
 
             <div>
-              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-[#999] mb-3">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.06em] text-faint mb-3">
                 Social Networks
               </h3>
               <div className="flex flex-wrap gap-2.5">
@@ -226,7 +214,7 @@ export default function ContactForm(): JSX.Element {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="flex items-center justify-center w-10 h-10 rounded-full bg-surface border border-[#e5e5e5] text-[#060607] hover:border-brand hover:text-brand transition-colors"
+                      className="flex items-center justify-center w-10 h-10 rounded-full bg-surface border border-hairline text-ink hover:border-brand hover:text-brand transition-colors"
                     >
                       {Icon && <Icon className="w-[18px] h-[18px]" />}
                     </a>
@@ -237,32 +225,53 @@ export default function ContactForm(): JSX.Element {
           </div>
         </div>
 
-        {/* Right: Form card */}
-        <div className="bg-surface rounded-3xl border border-hairline p-8 md:p-10 shadow-2xl relative overflow-hidden font-sans">
-          <div className="mb-6">
-            <h3 className="text-[28px] font-medium tracking-tight text-ink mb-1">Project Inquiry</h3>
-            <p className="text-sm text-mist">Fill in the details below for a same-day technical review.</p>
+        {/* Right: Form card — blueprint treatment */}
+        <div className="relative bg-surface border border-hairline p-8 md:p-10 shadow-sm">
+          {/* corner ticks */}
+          <span className="absolute -left-px -top-px h-3 w-3 border-l-2 border-t-2 border-brand" />
+          <span className="absolute -right-px -top-px h-3 w-3 border-r-2 border-t-2 border-brand" />
+          <span className="absolute -left-px -bottom-px h-3 w-3 border-b-2 border-l-2 border-brand" />
+          <span className="absolute -right-px -bottom-px h-3 w-3 border-b-2 border-r-2 border-brand" />
+
+          <div className="mb-6 flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-[28px] font-medium tracking-tight text-ink mb-1">
+                Project Inquiry
+              </h3>
+              <p className="text-sm text-mist">
+                Fill in the details below for a same-day technical review.
+              </p>
+            </div>
+            {/* live completion readout */}
+            <div className="shrink-0 text-right">
+              <span className="block text-[11px] uppercase tracking-[0.06em] text-faint">
+                Fields
+              </span>
+              <span className="block text-lg font-semibold text-ink">
+                {filledCount}
+                <span className="text-faint">/5</span>
+              </span>
+            </div>
           </div>
 
-          {/* Alert notifications */}
           {status.type === "success" && (
-            <div className="mb-6 p-4 bg-brand/10 border border-brand/40 rounded-xl flex items-start gap-3 text-ink text-sm">
+            <div className="mb-6 p-4 bg-brand/5 border border-brand/30 rounded-md flex items-start gap-3 text-ink text-sm">
               <CheckCircle2 className="w-5 h-5 text-brand flex-shrink-0 mt-0.5" />
               <span>{status.message}</span>
             </div>
           )}
 
           {status.type === "error" && (
-            <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-start gap-3 text-red-200 text-sm">
-              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <div className="mb-6 p-4 bg-red-500/5 border border-red-500/30 rounded-md flex items-start gap-3 text-red-700 text-sm">
+              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               <span>{status.message}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5 font-sans">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-[12px] font-sans uppercase tracking-wider text-mist">
+                <label htmlFor="name" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                   Full Name <span className="text-brand">*</span>
                 </label>
                 <input
@@ -273,12 +282,12 @@ export default function ContactForm(): JSX.Element {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Jane Doe"
-                  className="font-sans bg-surface-2 text-ink placeholder-faint placeholder:text-[15px] text-sm rounded-xl px-4 py-3 border border-hairline focus:outline-none focus:border-brand transition-colors"
+                  className={inputClasses}
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-[12px] font-sans uppercase tracking-wider text-mist">
+                <label htmlFor="email" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                   Work Email <span className="text-brand">*</span>
                 </label>
                 <input
@@ -289,13 +298,13 @@ export default function ContactForm(): JSX.Element {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="jane@company.com"
-                  className="font-sans bg-surface-2 text-ink placeholder-faint placeholder:text-[15px] text-sm rounded-xl px-4 py-3 border border-hairline focus:outline-none focus:border-brand transition-colors"
+                  className={inputClasses}
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="organization" className="text-[12px] font-sans uppercase tracking-wider text-mist">
+              <label htmlFor="organization" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                 Organization / Company
               </label>
               <input
@@ -305,12 +314,12 @@ export default function ContactForm(): JSX.Element {
                 value={formData.organization}
                 onChange={handleChange}
                 placeholder="Company Name Inc."
-                className="font-sans bg-surface-2 text-ink placeholder-faint placeholder:text-[15px] text-sm rounded-xl px-4 py-3 border border-hairline focus:outline-none focus:border-brand transition-colors"
+                className={inputClasses}
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="service" className="text-[12px] font-sans uppercase tracking-wider text-mist">
+              <label htmlFor="service" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                 Primary Service Interest <span className="text-brand">*</span>
               </label>
               <select
@@ -319,24 +328,22 @@ export default function ContactForm(): JSX.Element {
                 required
                 value={formData.service}
                 onChange={handleChange}
-                className="font-sans bg-surface-2 text-ink text-[15px] rounded-xl px-4 py-3 border border-hairline focus:outline-none focus:border-brand transition-colors appearance-none cursor-pointer"
+                className={`${inputClasses} appearance-none cursor-pointer`}
               >
-                <option value="" disabled className="bg-surface-2 text-faint">
+                <option value="" disabled>
                   Select a service category...
                 </option>
                 {servicesData.map((svc) => (
-                  <option key={svc.slug} value={svc.title} className="bg-surface-2 text-ink">
+                  <option key={svc.slug} value={svc.title}>
                     {svc.title} ({svc.badge})
                   </option>
                 ))}
-                <option value="Custom AI Consulting" className="bg-surface-2 text-ink">
-                  Custom AI Architecture &amp; Strategy
-                </option>
+                <option value="Custom AI Consulting">Custom AI Architecture &amp; Strategy</option>
               </select>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-[12px] font-sans uppercase tracking-wider text-mist">
+              <label htmlFor="message" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                 Project Scope &amp; Message <span className="text-brand">*</span>
               </label>
               <textarea
@@ -347,18 +354,18 @@ export default function ContactForm(): JSX.Element {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Describe your use case, data environment, and target timeline..."
-                className="font-sans bg-surface-2 text-ink placeholder-faint placeholder:text-[15px] text-sm rounded-xl px-4 py-3 border border-hairline focus:outline-none focus:border-brand transition-colors resize-none"
+                className={`${inputClasses} resize-none`}
               />
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-2 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand text-ink font-sans text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-brand-bright transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,81,0,0.2)]"
+              className="mt-2 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand text-void text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded-md hover:bg-brand-dim transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,81,0,0.2)] cursor-pointer"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin text-ink" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   <span>Submitting Inquiry...</span>
                 </>
               ) : (

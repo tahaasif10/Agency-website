@@ -1,28 +1,26 @@
+import AboutHero from "@/components/sections/about/AboutHero";
 import AboutStory from "@/components/sections/about/AboutStory";
-import AboutDifference from "@/components/sections/about/AboutDifference";
+import AboutWhatWeDo from "@/components/sections/about/AboutWhatWeDo";
 import AboutWork from "@/components/sections/about/AboutWork";
 import AboutTeam from "@/components/sections/about/AboutTeam";
-import AboutValues from "@/components/sections/about/AboutValues";
-import AboutTechStack from "@/components/sections/about/AboutTechStack";
-import AboutMilestones from "@/components/sections/about/AboutMilestones";
-import AboutNumbers from "@/components/sections/about/AboutNumbers";
+import AboutProof from "@/components/sections/about/AboutProof";
+import AboutCTA from "@/components/sections/about/AboutCTA";
 
 export const metadata = {
-  title: "About Us — Apex AI Studio",
+  title: "About Us — Fostyn AI Studio",
   description: "Senior AI engineers, full-stack architects, and MLOps specialists building production AI systems.",
 };
 
 export default function AboutPage() {
   return (
-    <main className="bg-void text-ink min-h-screen">
+    <main className="bg-paper text-ink min-h-screen">
+      <AboutHero />
       <AboutStory />
-      <AboutDifference />
+      {/* <AboutWhatWeDo /> */}
       <AboutWork />
       <AboutTeam />
-      <AboutValues />
-      <AboutTechStack />
-      <AboutMilestones />
-      <AboutNumbers />
+      <AboutProof />
+      <AboutCTA />
     </main>
   );
 }

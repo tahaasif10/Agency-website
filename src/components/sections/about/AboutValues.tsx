@@ -3,7 +3,7 @@ interface ValueItem {
   desc: string;
 }
 
-export default function AboutValues(): JSX.Element {
+export default function AboutValues() {
   const values: ValueItem[] = [
     {
       title: "We say no when AI isn't the answer",

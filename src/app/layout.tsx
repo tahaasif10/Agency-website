@@ -6,7 +6,7 @@ import Footer from "@/components/layouts/Footer";
 import { agencyData } from "@/lib/data/agency";
 
 const monaSans = localFont({
-  src: "../../public/fonts/MonaSansVF.ttf", // path relative to this file
+  src: "../../public/Fonts/MonaSansVF.ttf",
   variable: "--font-mona-sans",
   display: "swap",
   weight: "100 900",   // variable weight range
@@ -27,11 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark scroll-smooth ${monaSans.variable}`}>
+    <html lang="en" className={`scroll-smooth ${monaSans.variable}`}>
       <body className="bg-void text-ink font-sans antialiased min-h-screen flex flex-col">
         <Nav />
         {/* Main curtain container lifting over the sticky footer */}
-        <main className="relative z-10 bg-void rounded-b-3xl overflow-hidden -mt-px flex-1">
+        <main
+          className="relative z-10 bg-void rounded-b-3xl -mt-px flex-1"
+          style={{ clipPath: "inset(0 round 0 0 1.5rem 1.5rem)" }}
+        >
           {children}
         </main>
         <Footer />

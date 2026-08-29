@@ -27,7 +27,7 @@ function useInView(
   return [ref, inView];
 }
 
-export default function AboutBelief(): JSX.Element {
+export default function AboutBelief() {
   const [quoteRef, quoteInView] = useInView();
   const [leftRef, leftInView] = useInView();
   const [rightRef, rightInView] = useInView();
@@ -92,9 +92,9 @@ export default function AboutBelief(): JSX.Element {
               That belief still runs everything we do.
             </h3>
             <p className="text-[#777] text-[clamp(0.95rem,1.2vw,1.0625rem)] leading-[1.7] m-0">
-              We don't sell AI. We sell working software that happens to use
+              We don&apos;t sell AI. We sell working software that happens to use
               AI where it earns its place. If a simpler solution gets you
-              there faster and cheaper, we'll build that instead, even if
+              there faster and cheaper, we&apos;ll build that instead, even if
               it means a smaller invoice.
             </p>
           </div>

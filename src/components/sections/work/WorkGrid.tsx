@@ -10,11 +10,11 @@ export default function WorkGrid(): React.JSX.Element {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-20">
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-brand block mb-3">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-gradient-brand block mb-3">
             Case Studies &amp; Engineering Showcase
           </span>
           <h1 className="text-4xl md:text-6xl font-light tracking-tight text-ink max-w-3xl leading-[1.1] mb-6">
-            Production AI systems shipped for <span className="font-normal text-brand">real enterprises.</span>
+            Production AI systems shipped for <span className="font-normal text-gradient-brand">real enterprises.</span>
           </h1>
           <p className="text-mist text-lg max-w-2xl leading-relaxed">
             Real systems, operating in production under heavy load, backed by measurable business metrics.

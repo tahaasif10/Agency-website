@@ -116,7 +116,7 @@ interface ValueCardProps {
   index: number;
 }
 
-function ValueCard({ value, index }: ValueCardProps): JSX.Element {
+function ValueCard({ value, index }: ValueCardProps) {
   const [ref, inView] = useInView(0.2);
 
   return (
@@ -142,7 +142,7 @@ function ValueCard({ value, index }: ValueCardProps): JSX.Element {
   );
 }
 
-export default function AboutValues(): JSX.Element {
+export default function AboutValues() {
   const [labelRef, labelInView] = useInView();
   const [headingRef, headingInView] = useInView();
 
@@ -169,7 +169,7 @@ export default function AboutValues(): JSX.Element {
               headingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            Principles we don't compromise on
+            Principles we don&apos;t compromise on
           </h2>
         </div>
 

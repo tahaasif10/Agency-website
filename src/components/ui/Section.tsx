@@ -3,10 +3,15 @@ import { ReactNode, ElementType } from "react";
 interface SectionProps {
   children: ReactNode;
   className?: string;
+  containerClassName?: string;
   as?: ElementType;
   bg?: "void" | "surface" | "none";
   id?: string;
 }
+
+/** Mona Sans on the section and all headings (overrides global Fraunces heading rule). */
+const monaSansScope =
+  "font-sans [&_h1]:!font-sans [&_h2]:!font-sans [&_h3]:!font-sans [&_h4]:!font-sans [&_h5]:!font-sans [&_h6]:!font-sans";
 
 const bgStyles: Record<NonNullable<SectionProps["bg"]>, string> = {
   void: "bg-void",
@@ -17,13 +22,17 @@ const bgStyles: Record<NonNullable<SectionProps["bg"]>, string> = {
 export function Section({
   children,
   className = "",
+  containerClassName = "max-w-6xl mx-auto",
   as: Tag = "section",
   bg = "none",
   id,
 }: SectionProps) {
   return (
-    <Tag id={id} className={`py-section-y px-section-x ${bgStyles[bg]} ${className}`}>
-      <div className="max-w-6xl mx-auto">{children}</div>
+    <Tag
+      id={id}
+      className={`py-section-y px-section-x ${monaSansScope} ${bgStyles[bg]} ${className}`}
+    >
+      <div className={containerClassName}>{children}</div>
     </Tag>
   );
 }

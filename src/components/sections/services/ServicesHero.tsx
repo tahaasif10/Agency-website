@@ -1,4 +1,4 @@
-﻿export default function ServicesHero(): JSX.Element {
+﻿export default function ServicesHero() {
   return (
     <section className="relative overflow-hidden bg-[#FAFAF8] px-6 pb-16 pt-28 md:px-12 md:pb-20">
       <div

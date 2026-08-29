@@ -3,7 +3,7 @@ interface StatItem {
   label: string;
 }
 
-export default function AboutNumbers(): JSX.Element {
+export default function AboutNumbers() {
   const stats: StatItem[] = [
     { value: "0", label: "Projects Shipped" },
     { value: "0", label: "Clients Served" },
@@ -19,7 +19,7 @@ export default function AboutNumbers(): JSX.Element {
         </h2>
         <p className="text-[#5F5F5F] mb-12 max-w-xl">
           {/* EDIT: once you have real data, this line can go too — or keep it as a standing promise */}
-          Small team, real numbers. We'll keep this section honest as it grows.
+          Small team, real numbers. We&apos;ll keep this section honest as it grows.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

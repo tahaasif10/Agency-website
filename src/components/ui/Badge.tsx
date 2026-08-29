@@ -5,7 +5,7 @@ type BadgeVariant = "default" | "outline" | "solid";
 const variantStyles: Record<BadgeVariant, string> = {
   default: "bg-surface-2 text-mist border border-hairline",
   outline: "bg-transparent text-mist border border-hairline",
-  solid: "bg-brand-wash text-brand border border-brand/20",
+  solid: "bg-brand-wash text-gradient-brand border border-brand/20",
 };
 
 interface BadgeProps {

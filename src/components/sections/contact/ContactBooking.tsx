@@ -1,4 +1,4 @@
-export default function ContactClosing(): JSX.Element {
+export default function ContactClosing() {
   return (
     <section className="py-20 px-6 md:px-12 bg-[#F4F4F2]">
       <div className="max-w-4xl mx-auto text-center">
