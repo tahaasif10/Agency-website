@@ -163,7 +163,7 @@ export default function ContactForm() {
               Let&apos;s build something <span className="text-brand">exceptional.</span>
             </h2>
             <p className="text-base leading-relaxed text-mist max-w-[48ch]">
-              Have a complex dataset, model fine-tuning requirement, or agentic workflow in mind? Reach out directly to our engineering team.
+              Whether it's a full product build, an AI system, or something in between — reach out directly to the engineers who'll actually build it.
             </p>
           </div>
 
@@ -322,24 +322,16 @@ export default function ContactForm() {
               <label htmlFor="service" className="text-[12px] uppercase tracking-wider text-mist font-medium">
                 Primary Service Interest <span className="text-brand">*</span>
               </label>
-              <select
+              <input
+                type="text"
                 id="service"
                 name="service"
                 required
                 value={formData.service}
                 onChange={handleChange}
-                className={`${inputClasses} appearance-none cursor-pointer`}
-              >
-                <option value="" disabled>
-                  Select a service category...
-                </option>
-                {servicesData.map((svc) => (
-                  <option key={svc.slug} value={svc.title}>
-                    {svc.title} ({svc.badge})
-                  </option>
-                ))}
-                <option value="Custom AI Consulting">Custom AI Architecture &amp; Strategy</option>
-              </select>
+                placeholder="Tell us what you need help with..."
+                className={inputClasses}
+              />
             </div>
 
             <div className="flex flex-col gap-2">

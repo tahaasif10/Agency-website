@@ -123,8 +123,8 @@ export default function FinalCTA() {
           style={{ fontFamily: "'Georgia', serif", letterSpacing: "-0.02em" }}
           className="text-4xl md:text-5xl font-bold text-[#F5F2EF] leading-[1.1] mb-6 relative z-10"
         >
-          Ready to get{" "}
-          <em className="italic font-bold">started!</em>
+          Great Software Isn&apos;t Built. It&apos;s{" "}
+          <em className="italic font-bold">Engineered.</em>
         </h2>
 
         {/* Subtext */}
@@ -132,7 +132,7 @@ export default function FinalCTA() {
           style={{ fontFamily: "'Inter', sans-serif" }}
           className="text-[15px] leading-[1.7] text-[#FAFAFA]/45 max-w-sm mx-auto mb-10 relative z-10"
         >
-          Let's build something great together.
+          AI-powered automation. Rock-solid engineering. One team that delivers both — let&apos;s build yours.
         </p>
 
         {/* CTA Button */}

@@ -4,7 +4,7 @@ import ContactFinalCTA from "@/components/ui/FinalCTAs/ContactFinalCTA";
 import Faq from "@/components/sections/global/Faq";
 
 export const metadata = {
-  title: "Contact Us — Apex AI Studio",
+  title: "Contact Us — fostyn",
   description: "Get in touch with our AI systems engineering team for a same-day technical review.",
 };
 

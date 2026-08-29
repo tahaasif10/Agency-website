@@ -15,18 +15,18 @@ interface TeamRole {
 
 const TEAM_ROLES: TeamRole[] = [
   {
-    count: "8",
+    count: "6",
     role: "Full-Stack Engineers",
     description:
-      "Building scalable web and mobile applications with modern frameworks",
+      "Building the backend architecture, APIs, and applications your systems run on — from web to mobile, start to finish.",
     tags: ["React", "Next.js", "Node.js", "Python"],
     icon: Code2,
   },
   {
-    count: "4",
-    role: "AI/ML Specialists",
+    count: "2",
+    role: "AI/ML Engineers",
     description:
-      "Implementing custom LLMs, fine-tuning models, and building agent systems",
+      "Embedding AI where it earns its place — agent systems, RAG pipelines, and fine-tuned models built to survive production, not just a demo.",
     tags: ["RAG architectures", "Model fine-tuning", "Prompt engineering"],
     icon: Brain,
   },
@@ -34,7 +34,7 @@ const TEAM_ROLES: TeamRole[] = [
     count: "2",
     role: "DevOps Engineers",
     description:
-      "Ensuring reliable deployments, monitoring, and infrastructure automation",
+      "Deployment, monitoring, and infrastructure automation — so what we ship stays reliable after launch, not just at handoff.",
     tags: ["Docker", "Kubernetes", "CI/CD", "Infrastructure"],
     icon: Server,
   },
@@ -73,6 +73,7 @@ export default function AboutTeam() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight leading-[1.12]">
             The Fostyn Engineering Team
           </h2>
+          <h4>No account managers, no sales layer — every person on this team writes code.</h4>
         </div>
 
         {/* 4-Card Responsive Grid */}

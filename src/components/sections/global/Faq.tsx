@@ -37,7 +37,7 @@ export default function Faq() {
     {
       question: "How much does a project cost?",
       answer:
-        "Every project is scoped individually based on complexity, but most engagements start at [$X]. We'll give you a clear quote after understanding your specific needs — no hidden fees.",
+        "Every project is scoped individually based on complexity. We'll give you a clear quote after a discovery call — no hidden fees, no 'starting at' number that doesn't hold up once we scope the real work.",
     },
     {
       question: "What happens after the project launches?",

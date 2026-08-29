@@ -13,30 +13,30 @@ interface ProofMetric {
 const METRICS: ProofMetric[] = [
   {
     value: "100%",
-    label: "Code & IP Handover",
+    label: "Full IP handover",
     description:
-      "You own all repositories, pipeline code, and fine-tuned weights with zero vendor lock-in.",
+      "You own every repository, pipeline, and model weight. No vendor lock-in, ever.",
     icon: ShieldCheck,
   },
   {
-    value: "99.9%",
-    label: "Production Uptime SLA",
+    value: "0%",
+    label: "Zero data retention",
     description:
-      "Engineered with automated fallbacks, retries, and high-availability vector infrastructure.",
+      "Zero-retention APIs and private VPC or on-prem deployment, standard on every engagement.",
     icon: Cpu,
   },
   {
-    value: "< 2 Wks",
-    label: "To Working Prototype",
+    value: "< 3 Wks",
+    label: "Working prototype before contract",
     description:
-      "See a functional, stress-tested prototype running on your use case before prolonged contracts.",
+      "You see functioning code on your actual use case before signing anything long-term.",
     icon: Zap,
   },
   {
-    value: "0",
-    label: "Data Retention / Leakage",
+    value: "1",
+    label: "Direct engineer access",
     description:
-      "Strict zero-data-retention APIs and private VPC/on-prem deployments ensuring enterprise privacy.",
+      "No account managers. You talk to the person building your system, from day one.",
     icon: Lock,
   },
 ];
@@ -63,7 +63,7 @@ export default function AboutProof() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-ink tracking-tight leading-[1.12]">
-            Battle-tested infrastructure and uncompromising standards.
+            What we commit to, not just what we claim.
           </h2>
 
           <p className="mt-5 text-lg md:text-xl text-mist font-light leading-relaxed max-w-2xl">

@@ -16,37 +16,37 @@ const SERVICES: Service[] = [
     number: "01",
     title: "Generative AI Development",
     description:
-      "Custom generative models built around your product, not a generic wrapper on a public API. Whether it's a copilot inside your tool, an image pipeline, or a writing assistant, we design it to fit how your users actually work — and we ship the production version, not the demo.",
+      "Custom models built around your product, not a wrapper on a public API. We design for how your users actually work, and we ship the production version — not the demo.",
   },
   {
     number: "02",
     title: "AI Agent Development",
     description:
-      "Autonomous agents that plan, act, and complete real multi-step tasks — not scripted chat flows. We build the reasoning, tool access, and guardrails needed for an agent to operate reliably inside your existing systems, with clear handoffs back to a human when it matters.",
+      "Autonomous agents that plan, act, and complete real multi-step tasks. We build the reasoning, tool access, and guardrails an agent needs to run reliably inside your existing systems, with clear handoffs back to a human when it matters.",
   },
   {
     number: "03",
     title: "AI Chatbot Development",
     description:
-      "Conversational bots designed around your users' actual intent, not a generic FAQ script. We map the real conversations your customers have, then build a bot that resolves them — with a fallback to a human that feels seamless, not like hitting a wall.",
+      "Bots built around your users' actual intent, not a generic FAQ script. We map the real conversations your customers have, then build something that resolves them.",
   },
   {
     number: "04",
     title: "Conversational AI for Customer Service",
     description:
-      "Support automation that resolves, escalates, and learns from every interaction. We integrate directly with your existing helpdesk and knowledge base so the system gets smarter over time instead of repeating the same canned answers to every ticket.",
+      "Support automation that resolves, escalates, and learns from every interaction, integrated directly with your existing helpdesk and knowledge base.",
   },
   {
     number: "05",
-    title: "Generative AI Consulting",
+    title: "Software Engineering",
     description:
-      "Strategy and roadmapping for adopting AI the right way — grounded in your actual data, team, and constraints, not hype. We help you separate what's genuinely worth building from what just sounds good in a pitch deck, then map a realistic path to shipping it.",
+      "The systems, infrastructure, and internal tools that AI features actually run on. If your product needs it built and maintained, this is where it happens.",
   },
   {
     number: "06",
-    title: "White-Label Artificial Intelligence",
+    title: "AI Consulting & Strategy",
     description:
-      "AI products you can rebrand and ship as your own, fully engineered and production-ready under the hood. You control the branding and customer relationship; we handle the model work, infrastructure, and maintenance behind the scenes.",
+      "A straight answer on what's worth building versus what just sounds good in a pitch deck, then a realistic path to shipping it.",
   },
   {
     number: "07",
@@ -103,19 +103,10 @@ export default function ServicesAccordion() {
     <Section bg="void" className="font-sans text-ink">
       <header className="grid grid-cols-1 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-x-[clamp(2rem,6vw,6rem)] gap-y-4 items-end pb-[clamp(2rem,4vw,3.5rem)]">
         <h2 className="!font-sans font-bold text-ink tracking-[-0.04em] leading-[1.1] m-0 text-[clamp(2rem,4vw,3.5rem)] max-w-[18ch]">
-          What end-to-end{" "}
-          <em className="italic font-light text-gradient-brand">
-            AI development
-          </em>{" "}
-          services do we offer?
+          What we build{" "}
         </h2>
         <p className="text-mist m-0 leading-[1.65] max-w-[50ch] text-[clamp(0.95rem,1.2vw,1.1rem)]">
-          As a custom AI development company and a trusted AI development
-          services company, we ship end-to-end across the full AI stack —
-          from large language models and intelligent agents to automation,
-          predictive analytics, and computer vision. Every solution is
-          tailored to your industry, scaled to your business, and engineered
-          for production from day one.
+          Fostyn ships across the full stack — from AI systems and autonomous agents to the core software that runs your business. No handoffs between "the AI people" and "the dev team." One engineering team owns it end to end, from architecture to production.
         </p>
       </header>
 

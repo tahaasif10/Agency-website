@@ -235,28 +235,28 @@ const icons = {
 
 const genAiMiniCards: MiniCard[] = [
   {
-    href: "/services/ai-agent-development-services",
+    href: "",
     icon: icons.agents,
-    title: "AI Agents",
-    description: "Autonomous agents that reason, plan, and execute complex workflows.",
+    title: "AI Chatbots & Conversational Support",
+    description: "Support bots built around what customers actually ask, not a generic FAQ script — with a human handoff that never feels like a wall.",
   },
   {
-    href: "/services/rag-development-company",
+    href: "",
     icon: icons.rag,
-    title: "RAG Systems",
-    description: "RAG systems that connect LLMs to your business data for accurate answers.",
+    title: "LLM & RAG Systems",
+    description: "Retrieval pipelines that connect your models to your own data, so answers come from what you know — not a guess.",
   },
   {
     href: "/services/ai-chatbot-development-company",
     icon: icons.chatbots,
-    title: "AI Chatbots",
-    description: "Intelligent chatbots for customer support, lead gen, and internal ops.",
+    title: "AI Workflow Automation",
+    description: "We wire AI into the tools you already run — CRMs, helpdesks, databases — so automation works inside real workflows, not a demo.",
   },
   {
     href: "/services/llm-development-services",
     icon: icons.llm,
-    title: "LLM Development",
-    description: "Custom LLM apps, fine-tuned models, and enterprise AI assistants.",
+    title: "AI Infrastructure & LLMOps",
+    description: "Deployment, monitoring, and evaluation that keep AI systems reliable in production, long after launch day.",
   },
 ];
 
@@ -264,26 +264,26 @@ const consultingMiniCards: MiniCard[] = [
   {
     href: "/services/computer-vision-development-company",
     icon: icons.vision,
-    title: "Computer Vision",
-    description: "Object detection, OCR, classification, and visual inspection systems.",
+    title: "Model Fine-Tuning",
+    description: "Domain-specific fine-tuning with LoRA and QLoRA — smaller, faster, cheaper, and sharper on your exact task.",
   },
   {
     href: "/services/nlp-development-services",
     icon: icons.nlp,
-    title: "NLP & Text AI",
-    description: "Text classification, NER, summarization, and semantic search.",
+    title: "Computer Vision",
+    description: "Detection, OCR, and inspection systems built for real-world conditions, not a clean demo dataset.",
   },
   {
     href: "/services/voice-ai-agent-development",
     icon: icons.voice,
-    title: "Voice AI",
-    description: "Voice assistants for customer service, call workflows, and apps.",
+    title: "Custom Software Engineering",
+    description: "The backend, APIs, and infrastructure your AI runs on — built and maintained by the same team, start to finish.",
   },
   {
     href: "/services/fine-tuned-llm-development-services",
     icon: icons.fineTuning,
-    title: "Model Fine-Tuning",
-    description: "Domain-specific model fine-tuning with LoRA and QLoRA techniques.",
+    title: "Systems Integration & Legacy Modernization",
+    description: "We connect or modernize what you already have — most businesses need integration, not a rebuild.",
   },
 ];
 
@@ -292,7 +292,7 @@ const tallCards: TallCard[] = [
   {
     href: "/case-studies",
     title: "See our work in action",
-    description: "50+ AI systems shipped across healthcare, legal, e-commerce, and education.",
+    description: "Every engagement starts with a working prototype, not a pitch deck. Talk to us about your project and we'll show you how we'd approach it.",
     dark: true,
     ctaLabel: "View case studies",
   },
@@ -311,8 +311,8 @@ const ServicesGrid: FC = () => {
           href="/services/generative-ai-development-services"
           badgeIcon={icons.genAi}
           badgeLabel="Generative AI"
-          title="Build intelligent products powered by large language models."
-          description="LLM-powered apps, copilots, content engines, code assistants, and custom AI workflows designed for production."
+          title="AI Agent Development"
+          description="Autonomous agents that plan, act, and complete real multi-step work — not scripted chat flows. We build the reasoning, tool access, and guardrails an agent needs to operate reliably inside your systems, with a clear handoff back to a human when it matters."
         />
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {genAiMiniCards.map((card) => (

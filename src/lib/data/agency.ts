@@ -2,14 +2,14 @@
 import { AgencyInfo } from "@/types";
 
 export const agencyData: AgencyInfo = {
-  name: "Apex AI Studio",
-  legalName: "Apex AI Technologies Inc.",
+  name: "Fostyn",
+  legalName: "Fostyn Ltd.",
   tagline: "Code with AI that thinks, edits, and runs natively in production.",
   description:
     "We build custom AI infrastructure, enterprise LLM workflows, autonomous agents, and RAG architectures that run directly within your operations with zero handoffs and maximum data control.",
-  email: "hello@apex-ai.studio",
-  phone: "+1 (800) 555-0199",
-  address: "San Francisco, CA & Remote Worldwide",
+  email: "info@fostyn.com",
+  phone: "021 332110198",
+  address: "Karachi, Pakistan",
   stats: [
     {
       value: "50+",

@@ -67,8 +67,7 @@ export default function AdvantageSection() {
         </div>
 
         <p className="text-base text-mist font-light leading-relaxed max-w-sm md:text-right">
-          Not a pitch about culture or values — five concrete things that
-          change how your project actually gets delivered.
+          Not a pitch about culture or values — five concrete things that change how your project gets delivered.
         </p>
       </div>
 

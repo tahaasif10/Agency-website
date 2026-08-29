@@ -60,12 +60,12 @@ export default function AboutWork() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight leading-[1.12]">
-              From idea to shipped, in four steps.
+              From idea to shipped. No black boxes.
             </h2>
           </div>
 
           <p className="text-base md:text-lg text-mist font-light leading-relaxed">
-            A clear, predictable delivery pipeline with rapid cycles, zero guesswork, and working code delivered at every phase.
+            A clear, predictable delivery pipeline with rapid cycles and working code at every phase — not a status update, actual code.
           </p>
         </div>
 
