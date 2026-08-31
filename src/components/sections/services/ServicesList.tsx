@@ -1,8 +1,23 @@
 import type { FC, ReactNode } from "react";
-
-/* -------------------------------------------------------------------------- */
-/*  Types                                                                     */
-/* -------------------------------------------------------------------------- */
+import {
+  ArrowUpRight,
+  AudioLines,
+  Bot,
+  BrainCircuit,
+  BriefcaseBusiness,
+  Building2,
+  Cpu,
+  Database,
+  Gauge,
+  MessageSquareQuote,
+  MessageSquareText,
+  Network,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+  Zap,
+} from "lucide-react";
+import { Card, CardIcon } from "@/components/ui/Card";
 
 interface MiniCard {
   href: string;
@@ -28,210 +43,101 @@ interface TallCard {
   ctaLabel?: string;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Shared bits                                                               */
-/* -------------------------------------------------------------------------- */
-
 const ArrowIcon: FC<{ className?: string }> = ({ className = "" }) => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 20 20"
-    fill="none"
-    aria-hidden="true"
-    className={`transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${className}`}
-  >
-    <path d="M5 15.5L15 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M6.875 5.5H15V13.625" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
+  <ArrowUpRight className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${className}`} />
 );
 
-/* -------------------------------------------------------------------------- */
-/*  Card variants                                                             */
-/* -------------------------------------------------------------------------- */
-
 const FeatureCardLink: FC<FeatureCard> = ({ href, badgeIcon, badgeLabel, title, description }) => (
-  <a
-    href={href}
-    className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-[#060607]/10 bg-white p-8 no-underline transition-all duration-200 hover:border-[#ff5100]/40 hover:shadow-[0_8px_30px_-12px_rgba(6,6,7,0.15)]"
-  >
-    <div>
-      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#ff5100]/25 bg-[#ff5100]/5 px-3 py-1.5 text-[#ff5100]">
-        {badgeIcon}
-        <span className="font-mono text-[11px] font-medium uppercase tracking-[0.08em]">{badgeLabel}</span>
+  <a href={href} className="group block h-full no-underline">
+    <Card className="h-full gap-5 p-5 sm:p-6">
+      <div className="flex flex-col gap-2.5">
+        <CardIcon highlight>{badgeIcon}</CardIcon>
+        {badgeLabel ? (
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-brand/25 bg-brand/5 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand">
+            {badgeLabel}
+          </span>
+        ) : null}
       </div>
-      <h3 className="text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-[#060607]">
-        {title}
-      </h3>
-      <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-[#060607]/60">{description}</p>
-    </div>
-    <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-[#060607]">
-      Learn more
-      <ArrowIcon />
-    </span>
+
+      <div className="flex flex-col gap-2.5">
+        <h3 className="text-xl font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[1.7rem]">{title}</h3>
+        <p className="max-w-[38ch] text-[14px] leading-relaxed text-mist">{description}</p>
+      </div>
+
+      <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-ink">
+        Learn more
+        <ArrowIcon />
+      </span>
+    </Card>
   </a>
 );
 
 const MiniCardLink: FC<MiniCard> = ({ href, icon, title, description }) => (
-  <a
-    href={href}
-    className="group flex h-full flex-col rounded-xl border border-[#060607]/10 bg-white p-5 no-underline transition-all duration-200 hover:border-[#ff5100]/40 hover:shadow-[0_8px_30px_-12px_rgba(6,6,7,0.15)]"
-  >
-    <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg bg-[#060607]/[0.04] text-[#060607] transition-colors duration-200 group-hover:bg-[#ff5100]/10 group-hover:text-[#ff5100]">
-      {icon}
-    </div>
-    <p className="text-[15px] font-semibold text-[#060607]">{title}</p>
-    <p className="mt-1.5 flex-1 text-[13px] leading-relaxed text-[#060607]/55">{description}</p>
-    <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#060607]/70 group-hover:text-[#ff5100]">
-      Read more
-      <ArrowIcon />
-    </span>
+  <a href={href} className="group block h-full no-underline">
+    <Card className="h-full gap-3 p-4 sm:p-4.5">
+      <CardIcon>{icon}</CardIcon>
+      <div className="flex flex-col gap-1.5">
+        <p className="text-[15px] font-semibold tracking-tight text-ink">{title}</p>
+        <p className="text-[13px] leading-relaxed text-mist">{description}</p>
+      </div>
+      <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-ink/70 group-hover:text-brand">
+        Read more
+        <ArrowIcon />
+      </span>
+    </Card>
   </a>
 );
 
 const TallCardLink: FC<TallCard> = ({ href, icon, title, description, dark, ctaLabel }) => (
-  <a
-    href={href}
-    className={
-      dark
-        ? "group col-span-full flex min-h-[220px] flex-col rounded-xl bg-[#060607] p-5 no-underline transition-all duration-200 hover:bg-[#0f0f10] sm:min-h-[240px] sm:p-6"
-        : "group flex h-full flex-col p-1 no-underline transition-colors duration-200 sm:p-2"
-    }
-  >
-    {icon && (
-      <div
-        className={`mb-4 flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-200 ${
-          dark
-            ? "bg-white/10 text-white"
-            : "bg-transparent text-[#060607] group-hover:text-[#ff5100]"
-        }`}
-      >
-        {icon}
+  <a href={href} className={dark ? "group col-span-full block h-full no-underline" : "group block h-full no-underline"}>
+    <Card
+      className={
+        dark
+          ? "h-full min-h-55 overflow-hidden bg-gradient-to-br from-[#0b0b0c] via-[#050505] to-[#ff5b1f]/30 p-5 text-white shadow-[0_18px_54px_-20px_rgba(255,91,31,0.42)] sm:min-h-60 sm:p-6"
+          : "h-full p-4 sm:p-5"
+      }
+    >
+      {icon ? (
+        <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${dark ? "bg-white/10 text-white" : "bg-surface-2 text-ink"}`}>
+          {icon}
+        </div>
+      ) : null}
+
+      <div className="flex flex-1 flex-col">
+        <h4 className={`text-base font-semibold tracking-tight ${dark ? "text-white" : "text-ink"}`}>{title}</h4>
+        <p className={`mt-2 text-[13px] leading-relaxed ${dark ? "text-white/70" : "text-mist"}`}>{description}</p>
+        {dark ? (
+          <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-white/55">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        ) : null}
       </div>
-    )}
-    <h4 className={`text-[15px] font-semibold ${dark ? "text-white" : "text-[#060607]"}`}>{title}</h4>
-    <p className={`mt-1.5 flex-1 text-[13px] leading-relaxed ${dark ? "text-white/50" : "text-[#060607]/55"}`}>
-      {description}
-    </p>
-    {dark ? (
-      <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#ff5100]">
-        {ctaLabel}
-        <ArrowIcon />
+
+      <span className={`mt-5 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] ${dark ? "text-brand" : "text-ink/70 group-hover:text-brand"}`}>
+        {dark ? ctaLabel : "Read more"}
+        <ArrowIcon className={dark ? "text-brand" : "text-current"} />
       </span>
-    ) : (
-      <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#060607]/70 group-hover:text-[#ff5100]">
-        Read more
-        <ArrowIcon />
-      </span>
-    )}
+    </Card>
   </a>
 );
 
-/* -------------------------------------------------------------------------- */
-/*  Icons                                                                     */
-/* -------------------------------------------------------------------------- */
-
 const icons = {
-  genAi: (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-      <path d="M2 17l10 5 10-5" />
-      <path d="M2 12l10 5 10-5" />
-    </svg>
-  ),
-  consulting: (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="12" y1="16" x2="12" y2="12" />
-      <line x1="12" y1="8" x2="12.01" y2="8" />
-    </svg>
-  ),
-  agents: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M12 8V4H8" />
-      <rect x="2" y="2" width="20" height="20" rx="2" />
-      <path d="M2 12h20" />
-      <path d="M12 2v20" />
-    </svg>
-  ),
-  rag: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-    </svg>
-  ),
-  chatbots: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    </svg>
-  ),
-  llm: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  ),
-  vision: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
-  nlp: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-    </svg>
-  ),
-  voice: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-      <line x1="12" y1="19" x2="12" y2="23" />
-    </svg>
-  ),
-  fineTuning: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-    </svg>
-  ),
-  conversational: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z" />
-      <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
-    </svg>
-  ),
-  fullService: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  ),
-  predictive: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-    </svg>
-  ),
-  whiteLabel: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-      <line x1="8" y1="21" x2="16" y2="21" />
-      <line x1="12" y1="17" x2="12" y2="21" />
-    </svg>
-  ),
-  dedicatedTeam: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  ),
+  genAi: <Sparkles className="h-5 w-5" />,
+  consulting: <BriefcaseBusiness className="h-5 w-5" />,
+  agents: <Bot className="h-5 w-5" />,
+  rag: <Database className="h-5 w-5" />,
+  chatbots: <MessageSquareText className="h-5 w-5" />,
+  llm: <BrainCircuit className="h-5 w-5" />,
+  vision: <Cpu className="h-5 w-5" />,
+  nlp: <MessageSquareQuote className="h-5 w-5" />,
+  voice: <AudioLines className="h-5 w-5" />,
+  fineTuning: <Zap className="h-5 w-5" />,
+  workflow: <Workflow className="h-5 w-5" />,
+  systems: <Network className="h-5 w-5" />,
+  infrastructure: <Gauge className="h-5 w-5" />,
+  modernization: <Building2 className="h-5 w-5" />,
+  security: <ShieldCheck className="h-5 w-5" />,
 };
-
-/* -------------------------------------------------------------------------- */
-/*  Content                                                                   */
-/* -------------------------------------------------------------------------- */
 
 const genAiMiniCards: MiniCard[] = [
   {
@@ -264,31 +170,30 @@ const consultingMiniCards: MiniCard[] = [
   {
     href: "/services/computer-vision-development-company",
     icon: icons.vision,
-    title: "Model Fine-Tuning",
-    description: "Domain-specific fine-tuning with LoRA and QLoRA — smaller, faster, cheaper, and sharper on your exact task.",
-  },
-  {
-    href: "/services/nlp-development-services",
-    icon: icons.nlp,
     title: "Computer Vision",
     description: "Detection, OCR, and inspection systems built for real-world conditions, not a clean demo dataset.",
   },
   {
+    href: "/services/nlp-development-services",
+    icon: icons.nlp,
+    title: "Natural Language Systems",
+    description: "AI assistants and language workflows tuned for real business context, messy inputs, and usable output.",
+  },
+  {
     href: "/services/voice-ai-agent-development",
     icon: icons.voice,
-    title: "Custom Software Engineering",
-    description: "The backend, APIs, and infrastructure your AI runs on — built and maintained by the same team, start to finish.",
+    title: "Voice AI Agents",
+    description: "Human-sounding conversational experiences that fit your current tools, workflows, and customer journeys.",
   },
   {
     href: "/services/fine-tuned-llm-development-services",
     icon: icons.fineTuning,
-    title: "Systems Integration & Legacy Modernization",
-    description: "We connect or modernize what you already have — most businesses need integration, not a rebuild.",
+    title: "Fine-Tuning & Optimization",
+    description: "Smaller, faster, cheaper models tuned for real tasks — built to perform where your business actually needs it.",
   },
 ];
 
 const tallCards: TallCard[] = [
-
   {
     href: "/case-studies",
     title: "See our work in action",
@@ -298,48 +203,41 @@ const tallCards: TallCard[] = [
   },
 ];
 
-/* -------------------------------------------------------------------------- */
-/*  Component                                                                 */
-/* -------------------------------------------------------------------------- */
-
 const ServicesGrid: FC = () => {
   return (
     <div className="flex flex-col gap-4 bg-[#fafafa] p-4 sm:gap-6 sm:p-6 md:p-10" id="svc-cards">
-      {/* Row 1: Generative AI feature + AI Agents / RAG / Chatbots / LLM minis */}
       <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         <FeatureCardLink
           href="/services/generative-ai-development-services"
           badgeIcon={icons.genAi}
-          badgeLabel=""
+          badgeLabel="AI agents"
           title="AI Agent Development"
           description="Autonomous agents that plan, act, and complete real multi-step work — not scripted chat flows. We build the reasoning, tool access, and guardrails an agent needs to operate reliably inside your systems, with a clear handoff back to a human when it matters."
         />
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {genAiMiniCards.map((card) => (
-            <MiniCardLink key={card.href} {...card} />
+            <MiniCardLink key={card.title} {...card} />
           ))}
         </div>
       </div>
 
-      {/* Row 2: Computer Vision / NLP / Voice / Fine-Tuning minis + Consulting feature */}
       <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         <div className="order-2 grid grid-cols-2 gap-4 sm:gap-6 lg:order-1">
           {consultingMiniCards.map((card) => (
-            <MiniCardLink key={card.href} {...card} />
+            <MiniCardLink key={card.title} {...card} />
           ))}
         </div>
         <div className="order-1 h-full lg:order-2">
           <FeatureCardLink
             href="/services/ai-consulting-services"
             badgeIcon={icons.consulting}
-            badgeLabel="Strategy & Consulting"
+            badgeLabel="Strategy & consulting"
             title="From AI strategy to production, we own the full lifecycle."
             description="Readiness assessment, architecture design, build, and deployment. One team, zero handoffs, real business outcomes."
           />
         </div>
       </div>
 
-      {/* Row 3: Tall cards */}
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 lg:grid-cols-7">
         {tallCards.map((card) => (
           <TallCardLink key={card.href} {...card} />

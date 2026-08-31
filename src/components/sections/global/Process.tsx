@@ -150,7 +150,7 @@ export default function AboutWork() {
                   className="flex items-start gap-5 lg:flex-col lg:items-start lg:gap-6 group cursor-default"
                 >
                   {/* Icon Node — corner-bracket frame instead of full circle */}
-                  <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center text-brand transition-transform duration-300 ease-out group-hover:scale-105">
+                  <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center transition-transform duration-300 ease-out group-hover:scale-105">
                     <div className="absolute inset-0 bg-surface" />
                     {/* corner brackets */}
                     <span
@@ -185,8 +185,10 @@ export default function AboutWork() {
                     </span>
 
                     <Icon
-                      className={`w-8 h-8 relative z-10 transition-transform duration-300 group-hover:scale-110`}
-                    />
+  className={`w-8 h-8 relative z-10 transition-colors duration-500 ease-out group-hover:scale-110 ${
+    isActive ? "text-brand" : "text-ink/30"
+  }`}
+/>
                   </div>
 
                   <div className="flex flex-col gap-2 pt-1 lg:pt-0">

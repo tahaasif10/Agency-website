@@ -35,15 +35,51 @@ export default function AboutCTA() {
           </div>
 
           {/* Headline */}
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-tight leading-[1.08] mb-6 relative z-10 max-w-3xl mx-auto">
+          <h2 className="text-[48px] font-light text-white tracking-tight leading-[1.08] mb-6 relative z-10 max-w-3xl mx-auto">
             Stop waiting for demos.{" "}
             <span className="text-brand font-medium">Build software that ships.</span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-base sm:text-lg md:text-xl leading-relaxed text-white/60 max-w-xl mx-auto mb-10 relative z-10 font-light">
+          <p className="text-base sm:text-lg md:text-xl leading-relaxed text-white/60 max-w-xl mx-auto mb-16 relative z-10 font-light">
             No sales scripts or junior account handoffs. Talk directly with senior AI engineers to scope, prototype, and deploy your production system.
           </p>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 relative z-10 max-w-3xl mx-auto">
+            <div className="flex flex-col items-center">
+              <div className="text-[30px] font-bold text-white tracking-tight leading-none mb-3">
+                4<span className="text-[#fafafa]">+</span>
+              </div>
+              <div className="text-sm md:text-base font-semibold text-white/70">
+                Products shipped
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-[30px] font-bold text-white tracking-tight leading-none mb-3">
+                8<span className="text-[#fafafa]">+</span>
+              </div>
+              <div className="text-sm md:text-base font-semibold text-white/70">
+                Clients served
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-[30px] font-bold text-white tracking-tight leading-none mb-3">
+                100<span className="text-[#fafafa]">%</span>
+              </div>
+              <div className="text-sm md:text-base font-semibold text-white/70">
+                Client retention
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-[30px] font-bold text-white tracking-tight leading-none mb-3">
+                2<span className="text-[#fafafa]"> wks</span>
+              </div>
+              <div className="text-sm md:text-base font-semibold text-white/70">
+                Avg. to first prototype
+              </div>
+            </div>
+          </div>
 
           {/* CTA Button */}
           <div className="relative z-10 flex flex-wrap items-center justify-center gap-4">

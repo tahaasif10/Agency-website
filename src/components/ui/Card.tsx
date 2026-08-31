@@ -3,22 +3,24 @@ import { ReactNode } from "react";
 interface CardProps {
   children: ReactNode;
   className?: string;
-  hover?: boolean;
-  highlight?: boolean;
 }
 
-export function Card({ children, className = "", hover = true, highlight = false }: CardProps) {
+export function Card({ children, className = "" }: CardProps) {
   return (
     <div
       className={`
-        rounded-xl border p-6 md:p-7 transition-all duration-300
-        ${highlight
-          ? "border-brand/40 bg-brand-wash"
-          : "border-hairline bg-surface"}
-        ${hover ? "hover:border-hairline-strong hover:-translate-y-1" : ""}
+        relative flex flex-col justify-between h-full rounded-3xl p-7 sm:p-8 border border-hairline bg-surface hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(6,6,7,0.10)] hover:border-hairline-strong transition-all duration-300 ease-out cursor-default group overflow-hidden
         ${className}
       `}
     >
+      <span
+        className="
+          pointer-events-none absolute left-1/2 top-0 -translate-x-1/2
+          h-[2px] w-[calc(100%-1rem)] rounded-full bg-brand
+          origin-center scale-x-0 transition-transform duration-300 ease-out
+          group-hover:scale-x-100
+        "
+      />
       {children}
     </div>
   );
