@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Easing } from "framer-motion";
 import { useInView } from "@/lib/hooks/useInView";
 
 interface AnimatedLineRevealProps {
@@ -10,7 +10,7 @@ interface AnimatedLineRevealProps {
   staggerDelay?: number;
   lineDuration?: number;
   lineOffset?: number;
-  ease?: string | number[];
+  ease?: Easing | Easing[];
 }
 
 interface LineInfo {
