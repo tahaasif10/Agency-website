@@ -22,7 +22,7 @@ const bgStyles: Record<NonNullable<SectionProps["bg"]>, string> = {
 export function Section({
   children,
   className = "",
-  containerClassName = "max-w-6xl mx-auto",
+  containerClassName = "max-w-[1240px] mx-auto",
   as: Tag = "section",
   bg = "none",
   id,
@@ -30,7 +30,7 @@ export function Section({
   return (
     <Tag
       id={id}
-      className={`py-section-y px-section-x ${monaSansScope} ${bgStyles[bg]} ${className}`}
+      className={`py-12 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-14 ${monaSansScope} ${bgStyles[bg]} ${className}`}
     >
       <div className={containerClassName}>{children}</div>
     </Tag>

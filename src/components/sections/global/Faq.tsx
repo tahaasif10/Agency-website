@@ -62,80 +62,80 @@ export default function Faq() {
 
   return (
     <Section id="faq" bg="void" className="relative overflow-hidden border-t border-hairline">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_2fr] gap-12 md:gap-16">
-          {/* Left Column: Heading */}
-          <div className="flex flex-col items-start h-full">
-            <h2 className="font-mona-sans font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
-              Frequently Asked Questions
-            </h2>
+      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_2fr] gap-12 md:gap-16">
+        {/* Left Column: Heading */}
+        <div className="flex flex-col items-start h-full gap-6">
+          <h2 className="font-mona-sans font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
+            Frequently Asked Questions
+          </h2>
 
-            <p className="font-mona-sans mt-6 text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
-              Straight answers to what clients actually ask before signing on — no sales language, no fine print surprises.
+          <p className="font-mona-sans text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
+            Straight answers to what clients actually ask before signing on — no sales language, no fine print surprises.
+          </p>
+
+          {/* Still have questions box */}
+          <div className="mt-2 w-full rounded-2xl border border-hairline bg-ink/[0.03] p-6 md:p-8 flex flex-col items-start text-left gap-4">
+            <h3 className="font-mona-sans font-bold text-xl md:text-2xl tracking-tight text-ink">
+              Still have questions?
+            </h3>
+            <p className="font-mona-sans text-sm leading-relaxed text-mist">
+              If it&apos;s not answered here, you&apos;re not stuck reading a help doc — talk to an engineer directly and get a straight answer.
             </p>
-
-            {/* Still have questions box — pushed to the bottom to align with the last FAQ item */}
-            <div className="mt-auto pt-10 rounded-2xl border border-hairline bg-ink/[0.03] px-8 py-10 flex flex-col items-start text-left gap-4 w-full">
-              <h3 className="font-mona-sans font-bold text-xl md:text-2xl tracking-tight text-ink">
-                Still have questions?
-              </h3>
-              <p className="font-mona-sans text-sm leading-relaxed text-mist">
-                If it's not answered here, you're not stuck reading a help doc — talk to an engineer directly and get a straight answer.
-              </p>
-              <Button href="/contact" variant="primary" size="md">
-                Get in touch
-              </Button>
-            </div>
+            <Button href="/contact" variant="secondary" size="md">
+              Get in touch
+            </Button>
           </div>
+        </div>
 
-          {/* Right Column: Accordion */}
-          <div className="border-t border-hairline">
-            {faqs.map((faq, index) => {
-              const isOpen = activeIndex === index;
-              return (
-                <div
-                  key={index}
-                  className="border-b border-hairline py-6 md:py-8 transition-colors duration-300"
+        {/* Right Column: Accordion */}
+        <div className="border-t border-hairline divide-y divide-hairline">
+          {faqs.map((faq, index) => {
+            const isOpen = activeIndex === index;
+            return (
+              <div
+                key={index}
+                className="transition-colors duration-300"
+              >
+                <button
+                  onClick={() => toggleAccordion(index)}
+                  className="w-full flex items-center justify-between gap-6 py-5 text-left group cursor-pointer focus:outline-none md:py-6"
+                  aria-expanded={isOpen}
                 >
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full flex items-center justify-between text-left gap-6 group cursor-pointer focus:outline-none"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="font-mona-sans font-bold text-lg md:text-xl leading-snug text-ink group-hover:text-brand transition-colors duration-300">
-                      {faq.question}
-                    </span>
+                  <span className="font-mona-sans font-bold text-lg md:text-xl leading-snug text-ink group-hover:text-brand transition-colors duration-300">
+                    {faq.question}
+                  </span>
 
-                    <span
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
-                        isOpen
-                          ? "rotate-45 bg-brand border-transparent text-void"
-                          : "bg-transparent border-hairline text-ink group-hover:bg-brand group-hover:border-transparent group-hover:text-void"
-                      }`}
-                    >
-                      <Plus className="w-4 h-4 transition-transform duration-300" />
-                    </span>
-                  </button>
-
-                  <div
-                    className={`grid transition-all duration-300 ease-in-out ${
+                  <span
+                    className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 border ${
                       isOpen
-                        ? "grid-rows-[1fr] opacity-100 mt-4"
-                        : "grid-rows-[0fr] opacity-0 mt-0"
+                        ? "rotate-45 bg-brand border-transparent text-void"
+                        : "bg-transparent border-hairline text-ink group-hover:bg-brand group-hover:border-transparent group-hover:text-void"
                     }`}
                   >
-                    <div className="overflow-hidden">
-                      <p className="font-mona-sans text-sm md:text-base leading-[1.65] max-w-[55ch] text-mist">
-                        {faq.answer}
-                      </p>
-                    </div>
+                    <Plus className="w-4 h-4 transition-transform duration-300" />
+                  </span>
+                </button>
+
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="pb-5 font-mona-sans text-sm md:text-base leading-[1.65] max-w-[55ch] text-mist md:pb-6">
+                      {faq.answer}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </Section>
   );
 }
+
+

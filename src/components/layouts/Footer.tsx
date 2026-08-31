@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Link as LinkIcon } from "lucide-react";
 import type { SVGProps } from "react";
 import { agencyData } from "@/lib/data/agency";
-import MetallicWordmark from "@/components/ui/metal/MetallicWordmark";
 
 function ColLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -183,11 +182,6 @@ export default function Footer() {
             Terms of Service
           </Link>
         </div>
-      </div>
-
-      {/* Oversized wordmark — stuck to the bottom edge, full viewport width, in brand orange */}
-      <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6 md:px-16 py-10">
-        <MetallicWordmark text={agencyData.name} />
       </div>
     </footer>
   );

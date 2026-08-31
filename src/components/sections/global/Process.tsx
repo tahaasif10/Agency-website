@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Section } from "@/components/ui/Section";
 import { useInView } from "@/lib/hooks/useInView";
 import { Search, PenTool, Code2, Rocket } from "lucide-react";
@@ -34,14 +35,38 @@ const STEPS: StepItem[] = [
   },
 ];
 
+// Total time for the beam to travel through all four phases (~1.6s, within the 1.4–2.0s target).
+const STEP_DURATION_MS = 400;
+
 export default function AboutWork() {
   const [headerRef, headerInView] = useInView<HTMLDivElement>(0.15);
-  const [timelineRef, timelineInView] = useInView<HTMLDivElement>(0.15);
+  const [timelineRef, timelineInView] = useInView<HTMLDivElement>(0.25);
+
+  // -1 = process not yet started. 0..3 = index of the most recently activated phase.
+  const [activeStep, setActiveStep] = useState(-1);
+  const hasPlayed = useRef(false);
+
+  useEffect(() => {
+    if (!timelineInView || hasPlayed.current) return;
+    hasPlayed.current = true;
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    STEPS.forEach((_, i) => {
+      timers.push(
+        setTimeout(() => setActiveStep(i), i === 0 ? 0 : i * STEP_DURATION_MS)
+      );
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, [timelineInView]);
+
+  // Fraction of the beam that should be in its active/accent state.
+  const progress = activeStep === -1 ? 0 : ((activeStep + 1) / STEPS.length) * 100;
 
   return (
     <Section
       id="how-we-work"
-      className="relative bg-paper text-ink border-b border-hairline overflow-hidden"
+      className="relative bg-paper text-ink overflow-hidden"
     >
       <div className="flex flex-col gap-16 md:gap-24">
         {/* Section Header (2-Column Grid: Heading on Left, Paragraph on Right) */}
@@ -79,47 +104,114 @@ export default function AboutWork() {
           {/* Connecting Beam (Desktop) */}
           <div
             aria-hidden="true"
-            className="hidden lg:block absolute top-10 left-[12.5%] right-[12.5%] h-1 z-0 overflow-hidden rounded-full"
+            className="hidden lg:block absolute top-10 left-10 right-[calc(25%-4rem)] h-[2px] z-0 overflow-hidden rounded-full"
           >
-            <div className="absolute inset-x-0 top-1/2 h-5 -translate-y-1/2 rounded-full bg-brand/45 blur-md" />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-brand via-brand-bright to-brand shadow-[0_0_22px_rgba(255,81,0,0.5)]" />
-            <div className="absolute inset-y-0 -left-1/3 w-1/3 rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent animate-[process-beam_2.8s_linear_infinite]" />
+            {/* Muted/inactive base track */}
+            <div className="absolute inset-0 rounded-full bg-ink/10" />
+            {/* Active/progressed portion, drawn left to right in sync with each phase */}
+            <div
+              className="absolute inset-y-0 left-0 rounded-full bg-brand ease-out"
+              style={{
+                width: `${progress}%`,
+                transitionProperty: "width",
+                transitionDuration: `${STEP_DURATION_MS}ms`,
+              }}
+            />
           </div>
 
-          <style jsx>{`
-            @keyframes process-beam {
-              from {
-                transform: translateX(0);
-              }
-              to {
-                transform: translateX(400%);
-              }
-            }
-          `}</style>
+          {/* Connecting Line (Mobile / Tablet) */}
+          <div
+            aria-hidden="true"
+            className="lg:hidden absolute top-0 bottom-0 left-10 w-px z-0 overflow-hidden"
+          >
+            {/* Muted/inactive base track */}
+            <div className="absolute inset-0 bg-ink/10" />
+            {/* Active/progressed portion, drawn top to bottom in sync with each phase */}
+            <div
+              className="absolute inset-x-0 top-0 bg-brand ease-out"
+              style={{
+                height: `${progress}%`,
+                transitionProperty: "height",
+                transitionDuration: `${STEP_DURATION_MS}ms`,
+              }}
+            />
+          </div>
 
           {/* Steps Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 text-center relative z-10">
-            {STEPS.map((step) => {
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8 relative z-10">
+            {STEPS.map((step, index) => {
               const Icon = step.icon;
+              const num = String(index + 1).padStart(2, "0");
+              const isActive = activeStep >= index;
+
               return (
                 <div
                   key={step.title}
-                  className="flex flex-col items-center group cursor-default gap-6"
+                  className="flex items-start gap-5 lg:flex-col lg:items-start lg:gap-6 group cursor-default"
                 >
-                  {/* Circular Icon Node */}
-                  <div className="w-20 h-20 rounded-full bg-surface border-2 border-brand/40 shadow-sm flex items-center justify-center text-brand transition-all duration-300 ease-out group-hover:border-brand group-hover:scale-110 group-hover:shadow-[0_0_28px_rgba(0,184,169,0.22)]">
-                    <Icon className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" />
+                  {/* Icon Node — corner-bracket frame instead of full circle */}
+                  <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center text-brand transition-transform duration-300 ease-out group-hover:scale-105">
+                    <div className="absolute inset-0 bg-surface" />
+                    {/* corner brackets */}
+                    <span
+                      className={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-colors duration-500 group-hover:border-brand ${
+                        isActive ? "border-brand" : "border-brand/50"
+                      }`}
+                    />
+                    <span
+                      className={`absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 transition-colors duration-500 group-hover:border-brand ${
+                        isActive ? "border-brand" : "border-brand/50"
+                      }`}
+                    />
+                    <span
+                      className={`absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 transition-colors duration-500 group-hover:border-brand ${
+                        isActive ? "border-brand" : "border-brand/50"
+                      }`}
+                    />
+                    <span
+                      className={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-colors duration-500 group-hover:border-brand ${
+                        isActive ? "border-brand" : "border-brand/50"
+                      }`}
+                    />
+
+                    <span
+                      className={`absolute -top-2.5 -right-2.5 font-mono text-[10px] font-semibold bg-paper px-1 border rounded-sm transition-all duration-500 ease-out ${
+                        isActive
+                          ? "text-brand border-brand/60 scale-100"
+                          : "text-mist border-hairline scale-100"
+                      }`}
+                    >
+                      {num}
+                    </span>
+
+                    <Icon
+                      className={`w-8 h-8 relative z-10 transition-transform duration-300 group-hover:scale-110`}
+                    />
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-ink tracking-tight">
-                    {step.title}
-                  </h3>
+                  <div className="flex flex-col gap-2 pt-1 lg:pt-0">
+                    {/* Title */}
+                    <h3
+                      className={`text-xl font-bold text-ink tracking-tight text-left transition-all duration-500 ease-out ${
+                        isActive
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-2.5"
+                      }`}
+                    >
+                      {step.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-sm text-mist leading-relaxed font-light max-w-[240px]">
-                    {step.description}
-                  </p>
+                    {/* Description */}
+                    <p
+                      className={`text-sm text-mist leading-relaxed font-light max-w-[240px] text-left transition-all duration-500 ease-out delay-100 ${
+                        isActive
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-1.5"
+                      }`}
+                    >
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
               );
             })}

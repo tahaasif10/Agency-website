@@ -113,15 +113,28 @@ export default function ServicesAccordion() {
       <div className="border-t border-hairline">
         {SERVICES.slice(0, 6).map((service, index) => {
           const isOpen = openIndex === index;
+          const isActive = isOpen;
+
           return (
             <div
               key={service.number}
-              className="svc-row relative w-full border-b border-hairline"
+              className={`svc-row group relative w-full border-b border-hairline transition-all duration-300 ease-out ${
+                isActive ? "bg-white" : "hover:bg-white"
+              }`}
             >
+              <span
+                className={`pointer-events-none absolute inset-y-0 left-0 w-[3px] origin-top bg-brand transition-all duration-300 ease-out ${
+                  isActive || "group-hover:scale-y-100 group-hover:opacity-100"
+                } ${
+                  isActive ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
+                }`}
+              />
               <button
                 type="button"
                 onClick={() => toggle(index)}
-                className="w-full grid grid-cols-[3.5rem_1fr_auto] md:grid-cols-[4.5rem_1fr_auto] items-center gap-x-8 md:gap-x-12 py-7 pl-4 pr-2 text-left"
+                className={`relative w-full grid grid-cols-[3.5rem_1fr_auto] md:grid-cols-[4.5rem_1fr_auto] items-center gap-x-8 md:gap-x-12 py-7 pl-4 pr-2 text-left transition-colors duration-300 ease-out ${
+                  isActive ? "bg-white" : "group-hover:bg-white"
+                }`}
               >
                 <span className="font-sans text-faint text-[clamp(1.25rem,2.2vw,1.75rem)] leading-none">
                   {service.number}

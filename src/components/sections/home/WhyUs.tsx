@@ -46,7 +46,7 @@ export default function AdvantageSection() {
   const [gridRef, gridInView] = useInView<HTMLDivElement>(0.15);
 
   return (
-    <Section bg="void" className="text-ink border-t border-hairline">
+    <Section bg="void" className="text-ink">
       <div
         ref={headerRef}
         className={`flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 transition-all duration-700 ease-out ${

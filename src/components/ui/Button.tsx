@@ -6,19 +6,21 @@ import {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
 } from "react";
+import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
+// Keep all standard buttons solid black, with a subtle lift on hover and no
+// color-shift treatment. This matches the site's design and avoids the white
+// button issue from the light theme tokens.
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand text-ink hover:bg-brand-bright hover:shadow-[0_0_32px_rgba(255,81,0,0.35)]",
+    "border border-[#060607] bg-[#060607] text-white shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.12)]",
   secondary:
-    "bg-ink text-void hover:bg-ink/90",
-  outline:
-    "bg-transparent text-ink border border-hairline-strong hover:border-brand hover:text-brand",
-  ghost:
-    "bg-transparent text-mist hover:text-ink",
+    "border border-[#060607] bg-[#060607] text-white shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.12)]",
+  outline: "border border-ink bg-transparent text-ink",
+  ghost: "border border-transparent bg-transparent text-ink",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -31,8 +33,8 @@ interface BaseProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: ReactNode;
-  className?: string;
   icon?: ReactNode;
+  className?: string;
 }
 
 type ButtonAsButton = BaseProps &
@@ -51,16 +53,24 @@ export function Button({
   variant = "primary",
   size = "md",
   children,
-  className = "",
   icon,
+  className = "",
   href,
   ...props
 }: ButtonProps) {
-  const classes = `
-    inline-flex items-center justify-center gap-2 rounded-full font-mono font-semibold
-    tracking-wide uppercase transition-all duration-300
-    ${variantStyles[variant]} ${sizeStyles[size]} ${className}
-  `;
+  const classes = cn(
+    "group relative inline-flex w-auto cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full border text-center font-mono font-semibold tracking-wide uppercase",
+    variantStyles[variant],
+    sizeStyles[size],
+    className,
+  );
+
+  const content = (
+    <>
+      {icon ? <span className="relative z-10 inline-flex items-center">{icon}</span> : null}
+      <span className="relative z-10 whitespace-nowrap">{children}</span>
+    </>
+  );
 
   if (href !== undefined) {
     return (
@@ -69,8 +79,7 @@ export function Button({
         className={classes}
         {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
-        {children}
-        {icon}
+        {content}
       </Link>
     );
   }
@@ -80,8 +89,7 @@ export function Button({
       className={classes}
       {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
-      {children}
-      {icon}
+      {content}
     </button>
   );
 }
