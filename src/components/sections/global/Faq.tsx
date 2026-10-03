@@ -11,7 +11,7 @@ interface FaqItem {
 }
 
 export default function Faq() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const faqs: FaqItem[] = [
     {
@@ -57,24 +57,29 @@ export default function Faq() {
   ];
 
   const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    // Never close the active item — one must always be open
+    if (index !== activeIndex) {
+      setActiveIndex(index);
+    }
   };
 
   return (
     <Section id="faq" bg="void" className="relative overflow-hidden border-t border-hairline">
       <div className="grid grid-cols-1 md:grid-cols-[1.2fr_2fr] gap-12 md:gap-16">
         {/* Left Column: Heading */}
-        <div className="flex flex-col items-start h-full gap-6">
-          <h2 className="font-mona-sans font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
-            Frequently Asked Questions
-          </h2>
+        <div className="flex flex-col items-start justify-between h-full gap-6">
+          <div className="flex flex-col items-start gap-6">
+            <h2 className="font-mona-sans font-bold tracking-[-0.03em] leading-[1.1] text-[clamp(2rem,3.5vw,3rem)] max-w-[15ch] text-ink">
+              Frequently Asked Questions
+            </h2>
 
-          <p className="font-mona-sans text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
-            Straight answers to what clients actually ask before signing on — no sales language, no fine print surprises.
-          </p>
+            <p className="font-mona-sans text-sm md:text-base leading-[1.65] max-w-[36ch] text-mist">
+              Straight answers to what clients actually ask before signing on — no sales language, no fine print surprises.
+            </p>
+          </div>
 
-          {/* Still have questions box */}
-          <div className="mt-2 w-full rounded-2xl border border-hairline bg-ink/[0.03] p-6 md:p-8 flex flex-col items-start text-left gap-4">
+          {/* Still have questions box — pinned to bottom */}
+          <div className="mt-auto w-full rounded-2xl border border-hairline bg-ink/[0.03] p-6 md:p-8 flex flex-col items-start text-left gap-4">
             <h3 className="font-mona-sans font-bold text-xl md:text-2xl tracking-tight text-ink">
               Still have questions?
             </h3>

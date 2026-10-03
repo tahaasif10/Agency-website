@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 
@@ -93,12 +90,6 @@ const SERVICES: Service[] = [
 ];
 
 export default function ServicesAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggle = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
-
   return (
     <Section bg="void" className="font-sans text-ink">
       <header className="grid grid-cols-1 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-x-[clamp(2rem,6vw,6rem)] gap-y-4 items-end pb-[clamp(2rem,4vw,3.5rem)]">
@@ -111,70 +102,32 @@ export default function ServicesAccordion() {
       </header>
 
       <div className="border-t border-hairline">
-        {SERVICES.slice(0, 6).map((service, index) => {
-          const isOpen = openIndex === index;
-          const isActive = isOpen;
+        {SERVICES.slice(0, 6).map((service) => (
+          <div
+            key={service.number}
+            className="group relative w-full border-b border-hairline transition-colors duration-300 ease-out hover:bg-white"
+          >
+            {/* Row: number | heading + paragraph */}
+            <div className="relative flex gap-x-[clamp(1.5rem,4vw,4rem)] py-[clamp(2rem,4vw,3.5rem)] pr-4 items-start">
 
-          return (
-            <div
-              key={service.number}
-              className={`svc-row group relative w-full border-b border-hairline transition-all duration-300 ease-out ${
-                isActive ? "bg-white" : "hover:bg-white"
-              }`}
-            >
-              <span
-                className={`pointer-events-none absolute inset-y-0 left-0 w-[3px] origin-top bg-brand transition-all duration-300 ease-out ${
-                  isActive || "group-hover:scale-y-100 group-hover:opacity-100"
-                } ${
-                  isActive ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-                }`}
-              />
-              <button
-                type="button"
-                onClick={() => toggle(index)}
-                className={`relative w-full grid grid-cols-[3.5rem_1fr_auto] md:grid-cols-[4.5rem_1fr_auto] items-center gap-x-8 md:gap-x-12 py-7 pl-4 pr-2 text-left transition-colors duration-300 ease-out ${
-                  isActive ? "bg-white" : "group-hover:bg-white"
-                }`}
-              >
-                <span className="font-sans text-faint text-[clamp(1.25rem,2.2vw,1.75rem)] leading-none">
-                  {service.number}
-                </span>
-                <span className="font-sans font-medium text-ink tracking-[-0.03em] leading-tight text-[clamp(1.3rem,2.5vw,2rem)]">
+              {/* Number — small, brand red */}
+              <span className="font-sans text-brand text-[0.75rem] font-semibold leading-none w-8 shrink-0 pt-[0.45em] tracking-wide">
+                {service.number}.
+              </span>
+
+              {/* Heading (left) + Paragraph (right) */}
+              <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-[clamp(3rem,6vw,6rem)] gap-y-3 items-start">
+                <h3 className="font-sans font-medium text-ink tracking-[-0.035em] leading-[1.1] m-0 text-[clamp(1.6rem,2.6vw,2.1875rem)] transition-colors duration-300 ease-out group-hover:text-brand">
                   {service.title}
-                </span>
-                <Plus
-                  className={`w-6 h-6 text-ink flex-shrink-0 transition-transform duration-300 ease-out ${
-                    isOpen ? "rotate-45" : "rotate-0"
-                  }`}
-                />
-              </button>
-
-              <div
-                className={`grid transition-all duration-300 ease-out ${
-                  isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <div className="grid grid-cols-[3.5rem_1fr_auto] md:grid-cols-[4.5rem_1fr_auto] gap-x-8 md:gap-x-12 pl-4 pr-2 pb-8 items-center">
-                    <span aria-hidden="true" />
-                    <p className="font-sans text-mist leading-[1.6] text-[clamp(0.9rem,1.1vw,1rem)] max-w-[46ch] m-0">
-                      {service.description}
-                    </p>
-                    <Button
-                      href="/services"
-                      variant="secondary"
-                      size="sm"
-                      className="flex-shrink-0 whitespace-nowrap"
-                      icon={<ArrowUpRight className="w-3.5 h-3.5" />}
-                    >
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
+                </h3>
+                <p className="font-sans text-mist leading-[1.65] text-[clamp(0.85rem,1vw,0.9rem)] m-0">
+                  {service.description}
+                </p>
               </div>
+
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       <div className="flex justify-center md:justify-end pt-[clamp(2.5rem,5vw,4rem)]">

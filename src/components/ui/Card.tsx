@@ -3,24 +3,26 @@ import { ReactNode } from "react";
 interface CardProps {
   children: ReactNode;
   className?: string;
+  /**
+   * Drops the card's own border. Use it when the card sits inside a
+   * `gap-1 p-1 bg-ink/[0.06] border border-hairline` tray, which already frames it.
+   */
+  bare?: boolean;
 }
 
-export function Card({ children, className = "" }: CardProps) {
+export function Card({ children, className = "", bare = false }: CardProps) {
   return (
     <div
       className={`
-        relative flex flex-col justify-between h-full rounded-3xl p-7 sm:p-8 border border-hairline bg-surface hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(6,6,7,0.10)] hover:border-hairline-strong transition-all duration-300 ease-out cursor-default group overflow-hidden
+        group relative flex h-full flex-col justify-between overflow-hidden
+        bg-surface p-6 sm:p-8 cursor-default
+        outline outline-1 outline-offset-[-1px] outline-transparent
+        transition-[outline-color] duration-200 ease-out
+        hover:outline-brand/50
+        ${bare ? "" : "border border-hairline"}
         ${className}
       `}
     >
-      <span
-        className="
-          pointer-events-none absolute left-1/2 top-0 -translate-x-1/2
-          h-[2px] w-[calc(100%-1rem)] rounded-full bg-brand
-          origin-center scale-x-0 transition-transform duration-300 ease-out
-          group-hover:scale-x-100
-        "
-      />
       {children}
     </div>
   );
@@ -30,8 +32,12 @@ export function CardIcon({ children, highlight = false }: { children: ReactNode;
   return (
     <div
       className={`
-        w-11 h-11 rounded-xl flex items-center justify-center mb-6
-        ${highlight ? "bg-brand text-ink" : "bg-surface-2 text-ink"}
+        mb-6 flex h-11 w-11 items-center justify-center transition-colors duration-200
+        ${
+          highlight
+            ? "bg-brand text-ink"
+            : "border border-hairline bg-surface-2 text-ink group-hover:border-brand/50"
+        }
       `}
     >
       {children}
