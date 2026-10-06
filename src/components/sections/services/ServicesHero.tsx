@@ -1,4 +1,4 @@
-﻿export default function ServicesHero() {
+export default function ServicesHero() {
   return (
     <section className="relative overflow-hidden bg-[#FAFAF8] px-6 pb-16 pt-28 md:px-12 md:pb-20">
       <div
@@ -15,18 +15,16 @@
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#ff5100]/25 bg-white px-3 py-1.5 text-[#ff5100]">
             <span className="h-2 w-2 rounded-full bg-[#ff5100]" />
             <span className="font-mono text-[11px] font-medium uppercase tracking-[0.08em]">
-              AI services
+              Engineering &amp; AI Capabilities
             </span>
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-[1.04] tracking-tight text-[#060607] md:text-6xl">
-            Dummy services hero for production-grade AI builds.
+            Software engineering &amp; AI architectures built to scale.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#060607]/65">
-            Placeholder copy for the services page. Strategy, prototypes,
-            agents, automation, and custom AI systems can all live here once the
-            final message is ready.
+            From autonomous AI agents and intelligent platforms to core data pipelines and cloud infrastructure — we build production systems tailored around how your company operates.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -49,32 +47,35 @@
           <div className="rounded-xl bg-[#060607] p-5 text-white">
             <div className="mb-8 flex items-center justify-between">
               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/45">
-                Service pipeline
+                Delivery Lifecycle
               </span>
               <span className="rounded-full bg-[#ff5100]/15 px-3 py-1 text-xs font-medium text-[#ff5100]">
-                Draft
+                Production Ready
               </span>
             </div>
 
             <div className="space-y-3">
-              {["Discovery", "Architecture", "Prototype", "Launch"].map(
-                (step, index) => (
-                  <div
-                    key={step}
-                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.04] p-3"
-                  >
-                    <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white/[0.08] font-mono text-xs text-[#ff5100]">
-                      0{index + 1}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold">{step}</p>
-                      <p className="text-xs text-white/45">
-                        Dummy milestone description
-                      </p>
-                    </div>
+              {[
+                { title: "Technical Discovery", desc: "System scoping, security audit & data readiness" },
+                { title: "Architecture & Design", desc: "System blueprints, data contracts & APIs" },
+                { title: "Production Build", desc: "Full-stack implementation & automated test suite" },
+                { title: "Deploy & Scale", desc: "Telemetry monitoring, zero-downtime release & SLA" },
+              ].map((step, index) => (
+                <div
+                  key={step.title}
+                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.04] p-3"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white/[0.08] font-mono text-xs text-[#ff5100]">
+                    0{index + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold">{step.title}</p>
+                    <p className="text-xs text-white/45">
+                      {step.desc}
+                    </p>
                   </div>
-                ),
-              )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

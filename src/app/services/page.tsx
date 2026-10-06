@@ -7,8 +7,8 @@ import Process from "@/components/sections/global/Process";
 import Faq from "@/components/sections/global/Faq";
 
 export const metadata: Metadata = {
-  title: "AI Development Services — fostyn",
-  description: "End-to-end AI capabilities across LLMs, autonomous agents, RAG, and fine-tuned models.",
+  title: "Engineering & AI Services — fostyn",
+  description: "End-to-end engineering and AI capabilities across autonomous agents, custom internal platforms, data pipelines, and cloud systems.",
 };
 
 export default function ServicesPage(): React.ReactElement {

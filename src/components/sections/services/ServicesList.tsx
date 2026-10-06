@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { servicesData } from "@/lib/data/services";
 
 /* ------------------------------------------------------------------ */
 /* Motion — CSS only, so this stays a server component.                */
@@ -66,14 +67,26 @@ const DOT_GRID_STYLE = {
 /* Mini visuals (hover to play, still frame by default)                */
 /* ------------------------------------------------------------------ */
 
-// Chatbots: a question, then the reply being typed.
-const ChatVisual: FC = () => (
+// Product & Platform Engineering: browser window / code layout visual
+const PlatformVisual: FC = () => (
   <div className="flex w-full max-w-[200px] flex-col gap-2">
-    <div className="flex flex-col gap-1.5 self-start border border-hairline bg-surface px-2.5 py-2">
-      <Bar w="64px" />
-      <Bar w="40px" />
+    <div className="flex items-center gap-1.5 border-b border-hairline pb-1.5">
+      <span className="h-1.5 w-1.5 rounded-full bg-ink/30" />
+      <span className="h-1.5 w-1.5 rounded-full bg-ink/20" />
+      <span className="h-1.5 w-1.5 rounded-full bg-ink/20" />
+      <span className="ml-auto block h-1 w-12 bg-ink/10" />
     </div>
-    <div className="flex items-center gap-1 self-end bg-ink px-2.5 py-2">
+    <div className="grid grid-cols-3 gap-1.5">
+      <div className="border border-hairline bg-surface p-1.5">
+        <Bar w="100%" />
+        <span className="mt-1 block h-1 bg-brand/40" style={{ width: "60%" }} />
+      </div>
+      <div className="col-span-2 border border-hairline bg-surface p-1.5">
+        <Bar w="80%" />
+        <span className="mt-1 block h-1 bg-ink/15" style={{ width: "40%" }} />
+      </div>
+    </div>
+    <div className="flex items-center gap-1 self-end bg-ink px-2.5 py-1.5">
       {[0, 1, 2].map((i) => (
         <span
           key={i}
@@ -85,8 +98,28 @@ const ChatVisual: FC = () => (
   </div>
 );
 
-// LLM & RAG: a query pulls from your sources, one chunk at a time.
-const RagVisual: FC = () => (
+// Custom Internal Platforms: modular dashboard / CRM UI blocks
+const InternalPlatformVisual: FC = () => (
+  <div className="flex w-full max-w-[200px] flex-col gap-1.5">
+    <div className="flex items-center justify-between border border-hairline bg-surface px-2.5 py-1.5">
+      <Bar w="45%" />
+      <span className="h-2 w-2 bg-brand/60" />
+    </div>
+    <div className="grid grid-cols-2 gap-1.5">
+      <div className="border border-hairline bg-surface p-2">
+        <span className="block h-2 w-6 bg-brand/20 mb-1" />
+        <Bar w="80%" />
+      </div>
+      <div className="border border-hairline bg-surface p-2">
+        <span className="block h-2 w-6 bg-ink/15 mb-1" />
+        <Bar w="70%" />
+      </div>
+    </div>
+  </div>
+);
+
+// Data Engineering & Pipelines: pipeline ingestion & transformation
+const PipelineVisual: FC = () => (
   <div className="flex w-full max-w-[210px] flex-col gap-1.5">
     <div className="border border-hairline bg-surface px-2.5 py-1.5">
       <Bar w="60%" />
@@ -105,8 +138,8 @@ const RagVisual: FC = () => (
   </div>
 );
 
-// Workflow automation: a pulse travelling through connected steps.
-const WorkflowVisual: FC = () => (
+// Systems Integration & API Engineering: connected nodes with traveling data pulse
+const IntegrationVisual: FC = () => (
   <div className="flex w-full max-w-[210px] items-center">
     <span className="h-3.5 w-3.5 flex-shrink-0 border border-ink/30 bg-surface" />
     <span className="relative h-[2px] flex-1 overflow-hidden bg-ink/15">
@@ -123,8 +156,8 @@ const WorkflowVisual: FC = () => (
   </div>
 );
 
-// Infrastructure & LLMOps: a monitoring strip that breathes.
-const InfraVisual: FC = () => (
+// Cloud Modernization & Migration: cloud telemetry and cluster nodes
+const CloudVisual: FC = () => (
   <div className="flex h-16 items-end gap-1.5">
     {[40, 65, 50, 80, 55, 70, 45, 60].map((h, i) => (
       <span
@@ -136,21 +169,24 @@ const InfraVisual: FC = () => (
   </div>
 );
 
-// Computer vision: a detection box hopping between objects.
-const VisionVisual: FC = () => (
-  <div className="relative h-[84px] w-[200px]">
-    <span className="absolute bg-ink/10" style={{ left: 12, top: 20, width: 36, height: 44 }} />
-    <span className="absolute bg-ink/10" style={{ left: 82, top: 10, width: 44, height: 56 }} />
-    <span className="absolute bg-ink/10" style={{ left: 152, top: 26, width: 32, height: 36 }} />
-    <span
-      className="svc-box absolute left-0 top-0 h-14 w-[52px] border-[1.5px] border-brand"
-      style={{ transform: "translate(4px, 14px)" }}
-    />
+// Mobile & Field Apps: phone frame with sync pulse
+const MobileVisual: FC = () => (
+  <div className="relative h-[84px] w-[140px] border border-hairline bg-surface p-2 mx-auto flex flex-col justify-between">
+    <div className="flex justify-between items-center border-b border-hairline pb-1">
+      <span className="h-1 w-6 bg-ink/20" />
+      <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+    </div>
+    <div className="flex flex-col gap-1.5">
+      <Bar w="85%" />
+      <Bar w="60%" />
+      <span className="svc-sweep block h-1 w-1/2 bg-brand/50" />
+    </div>
+    <div className="h-1 w-8 bg-ink/20 self-center rounded-full" />
   </div>
 );
 
-// Natural language: entities picked out of running text.
-const NlpVisual: FC = () => {
+// Security & Compliance: shield boundary with inspection blinks
+const SecurityVisual: FC = () => {
   const rows: { w: number; ent?: boolean }[][] = [
     [{ w: 28 }, { w: 18 }, { w: 34, ent: true }, { w: 22 }],
     [{ w: 20 }, { w: 30 }, { w: 16, ent: true }, { w: 26 }],
@@ -177,8 +213,8 @@ const NlpVisual: FC = () => {
   );
 };
 
-// Voice AI: a waveform that starts moving.
-const VoiceVisual: FC = () => {
+// Managed Support & Continuous Improvement: monitoring waveform & SLA health
+const SupportVisual: FC = () => {
   const heights = [0.3, 0.5, 0.8, 0.4, 0.9, 0.6, 1, 0.7, 0.45, 0.85, 0.55, 0.35, 0.65, 0.4, 0.25];
   return (
     <div className="flex h-14 items-center gap-1">
@@ -193,36 +229,13 @@ const VoiceVisual: FC = () => {
   );
 };
 
-// Fine-tuning: loss curve that redraws as it settles.
-const TuningVisual: FC = () => (
-  <svg
-    viewBox="0 0 200 72"
-    className="h-16 w-full max-w-[200px] text-brand"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path d="M0 71.5H200" stroke="currentColor" className="text-ink/15" strokeWidth="1" />
-    <path d="M0.5 0V72" stroke="currentColor" className="text-ink/15" strokeWidth="1" />
-    <path
-      className="svc-draw"
-      d="M4 6 C 30 6, 36 54, 80 60 S 150 64, 196 64"
-      stroke="currentColor"
-      strokeWidth="2"
-      pathLength={1}
-      strokeDasharray={1}
-      strokeDashoffset={0}
-    />
-    <rect x="193" y="61" width="6" height="6" fill="currentColor" />
-  </svg>
-);
-
 // Featured: an agent run, stepping from plan to human handoff on a loop.
 const AgentTrace: FC = () => {
   const steps = [
-    { label: "Plan", note: "Break the request into steps" },
-    { label: "Tool call", note: "Query your systems" },
-    { label: "Result", note: "Check output against guardrails" },
-    { label: "Human handoff", note: "Escalate when it matters" },
+    { label: "Plan", note: "Deconstruct multi-step task" },
+    { label: "Tool call", note: "Query systems & execute tools" },
+    { label: "Result", note: "Verify against safety guardrails" },
+    { label: "Human handoff", note: "Escalate critical decisions" },
   ];
   return (
     <div className="relative w-full max-w-sm">
@@ -255,106 +268,55 @@ const AgentTrace: FC = () => {
 };
 
 /* ------------------------------------------------------------------ */
-/* Data (copy and links unchanged)                                     */
+/* Visual mapping helper                                               */
 /* ------------------------------------------------------------------ */
 
-interface MiniCard {
-  href: string;
-  visual: ReactNode;
-  title: string;
-  description: string;
-}
-
-const miniCards: MiniCard[] = [
-  {
-    href: "",
-    visual: <ChatVisual />,
-    title: "AI Chatbots & Conversational Support",
-    description:
-      "Support bots built around what customers actually ask, not a generic FAQ script — with a human handoff that never feels like a wall.",
-  },
-  {
-    href: "",
-    visual: <RagVisual />,
-    title: "LLM & RAG Systems",
-    description:
-      "Retrieval pipelines that connect your models to your own data, so answers come from what you know — not a guess.",
-  },
-  {
-    href: "/services/ai-chatbot-development-company",
-    visual: <WorkflowVisual />,
-    title: "AI Workflow Automation",
-    description:
-      "We wire AI into the tools you already run — CRMs, helpdesks, databases — so automation works inside real workflows, not a demo.",
-  },
-  {
-    href: "/services/llm-development-services",
-    visual: <InfraVisual />,
-    title: "AI Infrastructure & LLMOps",
-    description:
-      "Deployment, monitoring, and evaluation that keep AI systems reliable in production, long after launch day.",
-  },
-  {
-    href: "/services/computer-vision-development-company",
-    visual: <VisionVisual />,
-    title: "Computer Vision",
-    description:
-      "Detection, OCR, and inspection systems built for real-world conditions, not a clean demo dataset.",
-  },
-  {
-    href: "/services/nlp-development-services",
-    visual: <NlpVisual />,
-    title: "Natural Language Systems",
-    description:
-      "AI assistants and language workflows tuned for real business context, messy inputs, and usable output.",
-  },
-  {
-    href: "/services/voice-ai-agent-development",
-    visual: <VoiceVisual />,
-    title: "Voice AI Agents",
-    description:
-      "Human-sounding conversational experiences that fit your current tools, workflows, and customer journeys.",
-  },
-  {
-    href: "/services/fine-tuned-llm-development-services",
-    visual: <TuningVisual />,
-    title: "Fine-Tuning & Optimization",
-    description:
-      "Smaller, faster, cheaper models tuned for real tasks — built to perform where your business actually needs it.",
-  },
-];
+const visualMap: Record<string, ReactNode> = {
+  "product-platform-engineering": <PlatformVisual />,
+  "custom-internal-platforms": <InternalPlatformVisual />,
+  "data-engineering-pipelines": <PipelineVisual />,
+  "systems-integration-api-engineering": <IntegrationVisual />,
+  "cloud-modernization-migration": <CloudVisual />,
+  "mobile-field-apps": <MobileVisual />,
+  "security-compliance-by-design": <SecurityVisual />,
+  "managed-support-continuous-improvement": <SupportVisual />,
+};
 
 const BADGE =
   "inline-flex w-fit items-center gap-2 border border-brand/25 bg-brand/5 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand";
-
-const CARD_FRAME =
-  "";
 
 /* ------------------------------------------------------------------ */
 /* Cards                                                               */
 /* ------------------------------------------------------------------ */
 
-const FeaturedCard: FC = () => (
-  <a href="/services/generative-ai-development-services" className="group block no-underline">
-    <div className={`grid bg-surface lg:grid-cols-[1fr_1.05fr] ${CARD_FRAME}`}>
+const FeaturedServiceCard: FC<{
+  badge: string;
+  title: string;
+  description: string;
+}> = ({ badge, title, description }) => (
+  <div className="group block no-underline">
+    <div className="grid bg-surface lg:grid-cols-[1fr_1.05fr]">
       <div className="flex flex-col justify-between gap-12 p-6 sm:p-8 lg:p-10">
         <div className="flex flex-col gap-6">
           <span className={BADGE}>
             <span className="h-1.5 w-1.5 bg-brand" aria-hidden="true" />
-            AI agents
+            {badge}
           </span>
           <h3 className="text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-ink md:text-4xl">
-            AI Agent Development
+            {title}
           </h3>
           <p className="max-w-[44ch] text-[15px] leading-relaxed text-mist">
-            Autonomous agents that plan, act, and complete real multi-step work — not scripted chat flows. We build the reasoning, tool access, and guardrails an agent needs to operate reliably inside your systems, with a clear handoff back to a human when it matters.
+            {description}
           </p>
         </div>
 
-        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink group-hover:text-brand">
-          Learn more
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink group-hover:text-brand"
+        >
+          Start a project
           <ArrowIcon />
-        </span>
+        </a>
       </div>
 
       <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden border-t border-hairline bg-paper p-6 sm:p-10 lg:border-l lg:border-t-0">
@@ -362,27 +324,38 @@ const FeaturedCard: FC = () => (
         <AgentTrace />
       </div>
     </div>
-  </a>
+  </div>
 );
 
-const MiniCardLink: FC<MiniCard> = ({ href, visual, title, description }) => (
-  <a href={href} className="group block h-full no-underline">
-    <div className={`flex h-full flex-col gap-5 bg-surface p-5 ${CARD_FRAME}`}>
+const ServiceCardItem: FC<{
+  visual: ReactNode;
+  badge: string;
+  title: string;
+  description: string;
+}> = ({ visual, badge, title, description }) => (
+  <div className="group block h-full no-underline">
+    <div className="flex h-full flex-col gap-5 bg-surface p-5">
       <div className="flex h-28 items-center justify-center overflow-hidden border border-hairline bg-paper px-4">
         {visual}
       </div>
 
       <div className="flex flex-col gap-2">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-brand">
+          {badge}
+        </span>
         <h3 className="text-base font-semibold tracking-tight text-ink">{title}</h3>
         <p className="text-[13px] leading-relaxed text-mist">{description}</p>
       </div>
 
-      <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-ink/70 group-hover:text-brand">
-        Read more
+      <a
+        href="/contact"
+        className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-ink/70 group-hover:text-brand"
+      >
+        Inquire now
         <ArrowIcon />
-      </span>
+      </a>
     </div>
-  </a>
+  </div>
 );
 
 // Closing band: the strategy offer and the case-studies CTA, side by side.
@@ -400,12 +373,12 @@ const ClosingBand: FC = () => (
     />
 
     <a
-      href="/services/ai-consulting-services"
+      href="/contact"
       className="group relative flex flex-col gap-5 p-6 no-underline sm:p-8 lg:p-10"
     >
       <span className={BADGE}>
         <span className="h-1.5 w-1.5 bg-brand" aria-hidden="true" />
-        Strategy &amp; consulting
+        Strategy &amp; Engineering
       </span>
       <h3 className="max-w-[26ch] text-2xl font-semibold leading-tight tracking-[-0.03em] text-white md:text-3xl">
         From AI strategy to production, we own the full lifecycle.
@@ -414,13 +387,13 @@ const ClosingBand: FC = () => (
         Readiness assessment, architecture design, build, and deployment. One team, zero handoffs, real business outcomes.
       </p>
       <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white group-hover:text-brand">
-        Learn more
+        Start a project
         <ArrowIcon />
       </span>
     </a>
 
     <a
-      href="/case-studies"
+      href="/work"
       className="group relative flex flex-col gap-5 border-t border-white/10 p-6 no-underline sm:p-8 lg:border-l lg:border-t-0 lg:p-10"
     >
       <span className="h-1.5 w-1.5 bg-brand" aria-hidden="true" />
@@ -428,7 +401,7 @@ const ClosingBand: FC = () => (
         See our work in action
       </h3>
       <p className="max-w-[46ch] text-sm leading-relaxed text-white/70">
-        Every engagement starts with a working prototype, not a pitch deck. Talk to us about your project and we'll show you how we'd approach it.
+        Every engagement starts with a working prototype, not a pitch deck. Talk to us about your project and we&apos;ll show you how we&apos;d approach it.
       </p>
       <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-brand">
         View case studies
@@ -443,24 +416,41 @@ const ClosingBand: FC = () => (
 /* ------------------------------------------------------------------ */
 
 const ServicesGrid: FC = () => {
+  // First service is featured ("AI Agents & LLM Applications")
+  const featured = servicesData[0];
+  // Next 8 services rendered in grid
+  const gridServices = servicesData.slice(1);
+
   return (
     <div className="bg-[#fafafa] p-4 sm:p-6 md:p-10" id="svc-cards">
       <style>{CSS}</style>
 
       {/* One editorial tray, same language as the process section */}
       <div className="flex flex-col gap-1 border border-hairline bg-ink/[0.06] p-1">
-  <FeaturedCard />
+        {featured && (
+          <FeaturedServiceCard
+            badge={featured.badge}
+            title={featured.title}
+            description={featured.shortDescription}
+          />
+        )}
 
-  <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
-    {miniCards.map((card) => (
-      <MiniCardLink key={card.title} {...card} />
-    ))}
-  </div>
-</div>
+        <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-4">
+          {gridServices.map((service) => (
+            <ServiceCardItem
+              key={service.slug}
+              badge={service.badge}
+              visual={visualMap[service.slug] ?? <PipelineVisual />}
+              title={service.title}
+              description={service.shortDescription}
+            />
+          ))}
+        </div>
+      </div>
 
-<div className="mt-6 border border-hairline bg-ink/[0.06] p-1 md:mt-10">
-  <ClosingBand />
-</div>
+      <div className="mt-6 border border-hairline bg-ink/[0.06] p-1 md:mt-10">
+        <ClosingBand />
+      </div>
     </div>
   );
 };

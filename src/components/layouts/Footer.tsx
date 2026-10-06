@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Link as LinkIcon } from "lucide-react";
 import type { SVGProps } from "react";
 import { agencyData } from "@/lib/data/agency";
+import { servicesData } from "@/lib/data/services";
 
 function ColLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -64,14 +65,11 @@ function socialIcon(label: string) {
   return LinkIcon;
 }
 
-// Derived from the agency description copy — swap for a real services array
-// on agencyData once one exists, so this stays in sync with the Services page.
-const footerServices = [
-  { href: "/services#infrastructure", label: "AI Infrastructure" },
-  { href: "/services#llm-workflows", label: "LLM Workflows" },
-  { href: "/services#agents", label: "Autonomous Agents" },
-  { href: "/services#rag", label: "RAG Architecture" },
-];
+// Derived directly from servicesData so Footer stays synchronized
+const footerServices = servicesData.slice(0, 6).map((service) => ({
+  href: "/services",
+  label: service.title,
+}));
 
 export default function Footer() {
   return (
