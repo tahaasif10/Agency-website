@@ -7,7 +7,7 @@ export default function ContactHero() {
         </h1>
 
         <p className="text-mist m-0 leading-[1.65] max-w-[50ch] text-[clamp(1rem,1.25vw,1.15rem)]">
-          No sales script, no jargon-filled deck — just a straight answer on whether this is something we can build together.
+          Tell us what you're trying to build, improve, or solve. We'll take a look, understand what you're working toward, and tell you honestly how we can help. No sales script. No unnecessary pitch. Just a conversation about the work.
         </p>
       </header>
     </section>

@@ -13,7 +13,7 @@ export default function ServicesAccordion() {
           What we build{" "}
         </h2>
         <p className="text-mist m-0 leading-[1.65] max-w-[50ch] text-[clamp(0.95rem,1.2vw,1.1rem)]">
-          Fostyn ships across the full stack — from AI systems and autonomous agents to the core software that runs your business. No handoffs between &quot;the AI people&quot; and &quot;the dev team.&quot; One engineering team owns it end to end, from architecture to production.
+          We build the software businesses rely on to operate, grow, and move forward.
         </p>
       </header>
 

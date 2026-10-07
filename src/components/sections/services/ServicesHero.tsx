@@ -20,11 +20,11 @@ export default function ServicesHero() {
           </div>
 
           <h1 className="max-w-3xl text-4xl font-bold leading-[1.04] tracking-tight text-[#060607] md:text-6xl">
-            Software engineering &amp; AI architectures built to scale.
+            Engineering for what comes next.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#060607]/65">
-            From autonomous AI agents and intelligent platforms to core data pipelines and cloud infrastructure — we build production systems tailored around how your company operates.
+            From digital products and internal systems to AI, data, cloud, and integrations, we bring the technical expertise needed to build, modernize, and extend serious software. Whether you're starting something new or improving what already exists, our services are designed to work together around the needs of your business.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

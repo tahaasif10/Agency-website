@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { Button } from "@/components/ui/Button";
 
 // PLACEHOLDER COPY — rewrite before shipping.
-const HEADLINE = "Code with AI that never leaves the building.";
+const HEADLINE = "Software built around your business.";
 
 type LineRect = { left: number; top: number; width: number; height: number };
 
@@ -275,9 +275,7 @@ export default function Hero() {
             }`}
           >
             <span className="inline-block w-2 h-2 rounded-full bg-brand animate-pulse motion-reduce:animate-none" />
-            <span className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-brand">
-              Running locally
-            </span>
+            
           </div>
 
           <div
@@ -356,8 +354,7 @@ export default function Hero() {
             </h1>
 
             <p className="font-sans text-lg md:text-xl leading-[1.6] font-normal max-w-xl mx-auto mt-6 text-mist">
-              A coding agent that thinks, edits, and runs entirely on your
-              hardware. Nothing routed, nothing rate-limited, nothing watching.
+              We design and engineer custom software, AI systems, and digital infrastructure for businesses that need to build, improve, and scale.
             </p>
           </div>
 
@@ -367,10 +364,10 @@ export default function Hero() {
             }`}
           >
             <Button href="/contact" variant="primary" size="lg">
-              Join waitlist
+              Start a project
             </Button>
             <Button href="/about" variant="secondary" size="lg">
-              Our approach
+              Explore our services
             </Button>
           </div>
         </div>

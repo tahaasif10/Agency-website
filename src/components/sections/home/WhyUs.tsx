@@ -169,28 +169,28 @@ interface Advantage {
 
 const ADVANTAGES: Advantage[] = [
   {
-    title: "Senior engineers only",
-    description: "No junior hand-offs — the people who scope it are the people who build it.",
+    title: "Built around the problem",
+    description: "We don't start with a technology looking for somewhere to use it. We start with what needs to be solved.",
     visual: <SeniorVisual />,
   },
   {
-    title: "Direct access, no middlemen",
-    description: "You talk to the engineer working on your project, not an account manager.",
+    title: "One team, end to end",
+    description: "Product thinking, engineering, AI, data, infrastructure, and integrations can work together instead of becoming separate projects.",
     visual: <DirectVisual />,
   },
   {
-    title: "Production-grade from day one",
-    description: "Built to survive real users and real data, not just a polished demo.",
+    title: "Built to grow",
+    description: "We think beyond the first release and build systems that can evolve with the business.",
     visual: <ProductionVisual />,
   },
   {
-    title: "Fast, transparent iteration",
-    description: "Working code shipped at every phase — no black-box months of silence.",
+    title: "Use AI where it matters",
+    description: "Not everything needs AI. When it does, we build it into the workflow so it creates real value.",
     visual: <IterationVisual />,
   },
   {
-    title: "Scoped, not stretched",
-    description: "Clear deliverables agreed upfront, so scope doesn't quietly creep.",
+    title: "Build like we'll be here tomorrow",
+    description: "Clean architecture, reliable systems, and decisions that won't become tomorrow's problems.",
     visual: <ScopeVisual />,
   },
 ];
@@ -223,12 +223,12 @@ export default function AdvantageSection() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight leading-[1.12]">
-              What makes us different
+              Serious software, without the unnecessary complexity
             </h2>
           </div>
 
           <p className="text-base md:text-lg text-mist font-light leading-relaxed">
-            Not a pitch about culture or values — five concrete things that change how your project gets delivered.
+            We believe good engineering should make things clearer, not harder.
           </p>
         </div>
 

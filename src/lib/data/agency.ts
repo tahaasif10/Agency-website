@@ -6,7 +6,7 @@ export const agencyData: AgencyInfo = {
   legalName: "Fostyn",
   tagline: "Code with AI that thinks, edits, and runs natively in production.",
   description:
-    "We build custom AI infrastructure, enterprise LLM workflows, autonomous agents, and RAG architectures that run directly within your operations with zero handoffs and maximum data control.",
+    "Fostyn builds custom software, AI systems, and digital infrastructure for businesses that want to build better, operate smarter, and keep moving forward.",
   email: "info@fostyn.com",
   phone: "021 332110198",
   address: "Karachi, Pakistan",

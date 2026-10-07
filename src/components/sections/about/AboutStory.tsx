@@ -26,16 +26,14 @@ export default function AboutStory() {
 
         {/* 2. Large Opening Statement */}
         <h2 className="text-[55px] font-semibold leading-[1.15] tracking-tight text-ink max-w-5xl">
-          The AI industry got very good at{" "}
+          The Software industry got very good at{" "}
           <span className="text-faint font-semibold">demos</span> and very bad at{" "}
           <span className="text-faint font-semibold">delivery</span>.
         </h2>
 
         {/* 3. Supporting Paragraph */}
         <p className="mt-8 md:mt-10 text-xl md:text-2xl text-mist font-light leading-relaxed max-w-3xl">
-          Every company we talked to had already sat through a pitch, watched a
-          polished proof-of-concept, and then waited months for something that
-          never actually shipped.
+          Every company we talked to had seen the pitch. The polished demo. The proof of concept that looked promising — right up until it had to work inside a real business.
         </p>
       </div>
 
@@ -66,8 +64,7 @@ export default function AboutStory() {
             Core Philosophy
           </span>
           <p className="text-lg md:text-xl font-normal text-ink leading-relaxed tracking-tight">
-            &ldquo;We don&apos;t sell AI. We build working software that happens
-            to use AI where it earns its place.&rdquo;
+            &ldquo;We don't build software for the sake of building it. We build what needs to exist — and make sure it works in the real world.&rdquo;
           </p>
         </div>
       </div>

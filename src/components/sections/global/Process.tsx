@@ -11,20 +11,20 @@ interface StepItem {
 
 const STEPS: StepItem[] = [
   {
-    title: "Understand & Assess",
-    description: "Gather data, pinpoint needs, define success metrics.",
+    title: "Understand",
+    description: "We start with your business, your users, and the problem you're trying to solve.",
   },
   {
-    title: "Design & Conceptualize",
-    description: "Sketch solutions, create mockups, validate approach.",
+    title: "Shape & Validate",
+    description: "We turn the problem into a clear product, system, and technical direction.",
   },
   {
-    title: "Execute & Refine",
-    description: "Develop features, optimize functionality, iterate fast.",
+    title: "Build",
+    description: "We design, engineer, test, and ship in close collaboration with you.",
   },
   {
-    title: "Deliver & Support",
-    description: "Deploy product, provide maintenance, ensure success.",
+    title: "Evolve",
+    description: "We keep improving what we build as your needs, users, and business change.",
   },
 ];
 
@@ -75,12 +75,12 @@ export default function AboutWork() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink tracking-tight leading-[1.12]">
-              From idea to shipped. No black boxes.
+              Good software starts with understanding the problem.
             </h2>
           </div>
 
           <p className="text-base md:text-lg text-mist font-light leading-relaxed">
-            A clear, predictable delivery pipeline with rapid cycles and working code at every phase — not a status update, actual code.
+            We don't begin by choosing a technology. We begin by understanding what needs to change.
           </p>
         </div>
 

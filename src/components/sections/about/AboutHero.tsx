@@ -25,13 +25,14 @@ export default function AboutHero() {
         >
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-ink leading-[1.05]">
-            Senior engineers building AI systems that{" "}
-            <span className="text-gradient-brand">actually ship</span>.
+            Senior engineers building software that {" "}
+            <span className="text-gradient-brand">actually ships</span>.
           </h1>
 
           {/* Sub-headline */}
           <p className="mt-8 text-xl md:text-2xl text-mist leading-relaxed font-light max-w-3xl">
-            We founded {agencyData.name} because enterprise teams were tired of watching slick AI prototypes fail in production. We build the resilient data pipelines, agentic architectures, and native applications that power real operations.
+            We founded Fostyn because too many businesses were stuck between ambitious ideas and software that actually worked in the real world. 
+            We build the products, platforms, AI systems, and infrastructure that turn those ideas into reliable software — built for real users, real operations, and the demands that come after launch..
           </p>
         </motion.div>
       </div>
